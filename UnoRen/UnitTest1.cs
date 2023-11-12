@@ -48,24 +48,3 @@ public class Tests
         sut.CardOnTop.Should().Be(new Card(Color.Yellow, 7));
     }
 }
-
-public class Table
-{
-    public Table(Card card)
-    {
-        CardOnTop = card;
-    }
-
-    public Card CardOnTop { get; private set; }
-
-    public void Throw(Card card)
-    {
-        CardOnTop = card;
-    }
-}
-
-public enum Color
-{
-    Yellow,
-    Green
-}
