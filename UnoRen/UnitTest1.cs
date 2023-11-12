@@ -75,6 +75,7 @@ public class Tests
             .Should().Be(true);
     }
     
+    
     //Precondicionar
     //Tirar cartas
     //Robar

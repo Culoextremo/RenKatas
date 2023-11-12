@@ -11,6 +11,9 @@ public class Table
 
     public void Throw(Card card)
     {
+        if (!card.CanBeThrownOnTopOf(CardOnTop))
+            throw new ArgumentException("Invalid Card!");
+        
         CardOnTop = card;
     }
 }
