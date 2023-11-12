@@ -5,61 +5,66 @@ namespace UnoRen;
 
 public class Tests
 {
+    Card SomeCard => new Card(Color.Yellow, 4);
+    Card OtherCard => new Card(Color.Yellow, 1);
+    Card MatchingCard => SameColorCard;
+    Card SameColorCard => new Card(Color.Yellow, 7);
+    Card SameNumberAndDifferentColorCard => new Card(Color.Green, 4);
+    Card UnmatchingCard => new Card(Color.Green, 8);
     [Test]
     public void CanThrowOnCardWithSameColor()
     {
-        var sut = new Card(Color.Yellow, 4);
-        sut.CanBeThrownOnTopOf(new Card(Color.Yellow, 7))
+        SomeCard
+            .CanBeThrownOnTopOf(SameColorCard)
             .Should().BeTrue();
     }
 
     [Test]
     public void CanThrowOnCardWithSameNumber()
     {
-        var sut = new Card(Color.Yellow, 4);
-        sut.CanBeThrownOnTopOf(new Card(Color.Green, 4))
+        SomeCard
+            .CanBeThrownOnTopOf(SameNumberAndDifferentColorCard)
             .Should().BeTrue();
     }
 
     [Test]
     public void CanThrowOnCardWithDifferentColorAndNumber()
     {
-        var sut = new Card(Color.Yellow, 8);
-        sut.CanBeThrownOnTopOf(new Card(Color.Green, 4))
+        SomeCard
+            .CanBeThrownOnTopOf(UnmatchingCard)
             .Should().BeFalse();
     }
     
     [Test]
     public void DefaultTableCard()
     {
-        var sut = new DiscardPile(new Card(Color.Yellow, 3));
-        sut.CardOnTop.Should().Be(new Card(Color.Yellow, 3));
+        var sut = new DiscardPile(SomeCard);
+        sut.CardOnTop.Should().Be(SomeCard);
     }
 
     [Test]
     public void ThrowCardOnTop()
     {
-        var sut = new DiscardPile(new Card(Color.Yellow, 3));
+        var sut = new DiscardPile(SomeCard);
 
-        sut.Throw(new Card(Color.Yellow, 7));
+        sut.Throw(MatchingCard);
 
-        sut.CardOnTop.Should().Be(new Card(Color.Yellow, 7));
+        sut.CardOnTop.Should().Be(MatchingCard);
     }
     
     [Test]
     public void PlayerCannotThrowCardOnTable()
     {
-        var sut = new Player(new Card(Color.Green, 3));
-        var doc = new DiscardPile(new Card(Color.Yellow, 7));
-        sut.CanThrowOn(doc)
+        new Player(SomeCard)
+            .CanThrowOn(new DiscardPile(UnmatchingCard))
             .Should().Be(false);
     }
     
     [Test]
     public void PlayerCanThrowCardOnTable()
     {
-        var sut = new Player(new Card(Color.Green, 3));
-        var doc = new DiscardPile(new Card(Color.Yellow, 3));
+        var sut = new Player(SomeCard);
+        var doc = new DiscardPile(MatchingCard);
         sut.CanThrowOn(doc)
             .Should().Be(true);
     }
@@ -67,8 +72,8 @@ public class Tests
     [Test]
     public void PlayerCanThrow_WithMultipleCardsInHand()
     {
-        var sut = new Player(new Card(Color.Green, 8), new Card(Color.Yellow, 3));
-        var doc = new DiscardPile(new Card(Color.Yellow, 3));
+        var sut = new Player(UnmatchingCard, MatchingCard);
+        var doc = new DiscardPile(SomeCard);
         sut.CanThrowOn(doc)
             .Should().Be(true);
     }
@@ -76,60 +81,27 @@ public class Tests
     [Test]
     public void PlayerThrowCardOnTable()
     {
-        var sut = new Player(new Card(Color.Green, 8), new Card(Color.Yellow, 5));
-        var doc = new DiscardPile(new Card(Color.Yellow, 3));
+        var sut = new Player(UnmatchingCard, MatchingCard);
+        var doc = new DiscardPile(SomeCard);
 
-        sut.ThrowCardAt(doc, new Card(Color.Yellow, 5));
+        sut.ThrowCardAt(doc, MatchingCard);
 
         using var _ = new AssertionScope();
-        doc.CardOnTop.Should().Be(new Card(Color.Yellow, 5));
-        sut.Hand.Should().ContainSingle().And.Contain(new Card(Color.Green, 8));
+        doc.CardOnTop.Should().Be(MatchingCard);
+        sut.Hand.Should().ContainSingle().And.Contain(UnmatchingCard);
     }
 
     [Test]
     public void DrawFromDeck()
     {
-        var sut = new Player(new Card(Color.Yellow, 3));
-        var doc = new DrawPile(new Card(Color.Green, 8));
+        var sut = new Player(SomeCard);
+        var doc = new DrawPile(OtherCard);
         
         sut.DrawFrom(doc);
 
         using var _ = new AssertionScope();
-        sut.Hand.Contains(new Card(Color.Green, 8)).Should().BeTrue();
+        sut.Hand.Contains(OtherCard).Should().BeTrue();
         doc.Should().BeEmpty();
     }
     //Barajar la pila de descartes si se acaba el mazo
-}
-
-public class Player
-{
-    private readonly List<Card> hand;
-
-    public Player(params Card[] cards)
-    {
-        this.hand = cards.ToList();
-    }
-
-    public IEnumerable<Card> Hand => hand;
-
-    public bool CanThrowOn(DiscardPile discardPile)
-    {
-        return hand.Any(card => card.CanBeThrownOnTopOf(discardPile.CardOnTop));
-    }
-
-    public void ThrowCardAt(DiscardPile discardPile, Card card)
-    {
-        if (!CanThrowOn(discardPile))
-            throw new InvalidOperationException("Cannot throw card on table");
-        if(!hand.Contains(card))
-            throw new InvalidOperationException("Cannot throw card not in hand");
-        
-        discardPile.Throw(card);
-        hand.Remove(card);
-    }
-
-    public void DrawFrom(DrawPile drawPile)
-    {
-        hand.Add(drawPile.Draw());
-    }
 }
