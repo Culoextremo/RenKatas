@@ -37,7 +37,16 @@ public class Tests
         var sut = new Table(new Card(Color.Yellow, 3));
         sut.CardOnTop.Should().Be(new Card(Color.Yellow, 3));
     }
-    
+
+    [Test]
+    public void ThrowCardOnTop()
+    {
+        var sut = new Table(new Card(Color.Yellow, 3));
+
+        sut.Throw(new Card(Color.Yellow, 7));
+
+        sut.CardOnTop.Should().Be(new Card(Color.Yellow, 7));
+    }
 }
 
 public class Table
@@ -47,7 +56,12 @@ public class Table
         CardOnTop = card;
     }
 
-    public Card CardOnTop { get; set; }
+    public Card CardOnTop { get; private set; }
+
+    public void Throw(Card card)
+    {
+        CardOnTop = card;
+    }
 }
 
 public enum Color
