@@ -31,24 +31,23 @@ public class Tests
             .Should().BeFalse();
     }
     
-    //Otro numero mismo color
+    [Test]
+    public void DefaultTableCard()
+    {
+        var sut = new Table(new Card(Color.Yellow, 3));
+        sut.CardOnTop.Should().Be(new Card(Color.Yellow, 3));
+    }
+    
 }
 
-public class Card
+public class Table
 {
-    readonly Color color;
-    readonly int number;
-
-    public Card(Color color, int number)
+    public Table(Card card)
     {
-        this.color = color;
-        this.number = number;
+        CardOnTop = card;
     }
 
-    public bool CanBeThrownOnTopOf(Card other)
-    {
-        return other.color == this.color || other.number == this.number;
-    }
+    public Card CardOnTop { get; set; }
 }
 
 public enum Color
