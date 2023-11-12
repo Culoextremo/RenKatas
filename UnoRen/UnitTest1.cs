@@ -90,9 +90,7 @@ public class Tests
     }
     
     //Precondicionar
-    //Tirar cartas
     //Robar
-    //se quita la carta de la mano
 }
 
 public class Player
@@ -113,6 +111,11 @@ public class Player
 
     public void ThrowCardAt(Table table, Card card)
     {
+        if (!CanThrowOn(table))
+            throw new InvalidOperationException("Cannot throw card on table");
+        if(!hand.Contains(card))
+            throw new InvalidOperationException("Cannot throw card not in hand");
+        
         table.Throw(card);
         hand.Remove(card);
     }
