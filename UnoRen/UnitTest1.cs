@@ -49,7 +49,7 @@ public class Tests
     }
     
     [Test]
-    public void sdfsdf()
+    public void PlayerCannotThrowCardOnTable()
     {
         var sut = new Player(new Card(Color.Green, 3));
         var doc = new Table(new Card(Color.Yellow, 7));
@@ -58,7 +58,7 @@ public class Tests
     }
     
     [Test]
-    public void dfgd()
+    public void PlayerCanThrowCardOnTable()
     {
         var sut = new Player(new Card(Color.Green, 3));
         var doc = new Table(new Card(Color.Yellow, 3));
@@ -67,7 +67,7 @@ public class Tests
     }
     
     [Test]
-    public void asdadasd()
+    public void PlayerCanThrow_WithMultipleCardsInHand()
     {
         var sut = new Player(new Card(Color.Green, 8), new Card(Color.Yellow, 3));
         var doc = new Table(new Card(Color.Yellow, 3));
@@ -76,7 +76,6 @@ public class Tests
     }
     
     //Precondicionar
-    //check player throw varias cartas
     //Tirar cartas
     //Robar
     
