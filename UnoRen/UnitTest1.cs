@@ -2,6 +2,7 @@
 
 
 using FluentAssertions;
+using FluentAssertions.Execution;
 
 namespace UnoRen;
 
@@ -82,7 +83,10 @@ public class Tests
         var doc = new Table(new Card(Color.Yellow, 3));
 
         sut.ThrowCardAt(doc, new Card(Color.Yellow, 5));
-        doc.CardOnTop.Should().Be(new Card(Color.Yellow, 5)); 
+
+        using var _ = new AssertionScope();
+        doc.CardOnTop.Should().Be(new Card(Color.Yellow, 5));
+        sut.Hand.Should().ContainSingle().And.Contain(new Card(Color.Green, 8));
     }
     
     //Precondicionar
@@ -93,12 +97,14 @@ public class Tests
 
 public class Player
 {
-    private readonly Card[] hand;
+    private readonly List<Card> hand;
 
     public Player(params Card[] cards)
     {
-        this.hand = cards;
+        this.hand = cards.ToList();
     }
+
+    public IEnumerable<Card> Hand => hand;
 
     public bool CanThrowOn(Table table)
     {
@@ -108,5 +114,6 @@ public class Player
     public void ThrowCardAt(Table table, Card card)
     {
         table.Throw(card);
+        hand.Remove(card);
     }
 }
