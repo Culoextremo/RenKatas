@@ -74,12 +74,21 @@ public class Tests
         sut.CanThrowOn(doc)
             .Should().Be(true);
     }
-    
+
+    [Test]
+    public void PlayerThrowCardOnTable()
+    {
+        var sut = new Player(new Card(Color.Green, 8), new Card(Color.Yellow, 5));
+        var doc = new Table(new Card(Color.Yellow, 3));
+
+        sut.ThrowCardAt(doc, new Card(Color.Yellow, 5));
+        doc.CardOnTop.Should().Be(new Card(Color.Yellow, 5)); 
+    }
     
     //Precondicionar
     //Tirar cartas
     //Robar
-    
+    //se quita la carta de la mano
 }
 
 public class Player
@@ -94,5 +103,10 @@ public class Player
     public bool CanThrowOn(Table table)
     {
         return hand.Any(card => card.CanBeThrownOnTopOf(table.CardOnTop));
+    }
+
+    public void ThrowCardAt(Table table, Card card)
+    {
+        table.Throw(card);
     }
 }
