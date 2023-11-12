@@ -1,10 +1,17 @@
 ﻿namespace UnoRen;
 
-public class Table
+public class DiscardPile
 {
-    public Table(Card card)
+    readonly DrawPile drawPile;
+
+    public DiscardPile(Card card)
     {
         CardOnTop = card;
+    }
+
+    public DiscardPile(DrawPile drawPile, Card card) : this(card)
+    {
+        this.drawPile = drawPile;
     }
 
     public Card CardOnTop { get; private set; }

@@ -1,6 +1,3 @@
-
-
-
 using FluentAssertions;
 using FluentAssertions.Execution;
 
@@ -35,14 +32,14 @@ public class Tests
     [Test]
     public void DefaultTableCard()
     {
-        var sut = new Table(new Card(Color.Yellow, 3));
+        var sut = new DiscardPile(new Card(Color.Yellow, 3));
         sut.CardOnTop.Should().Be(new Card(Color.Yellow, 3));
     }
 
     [Test]
     public void ThrowCardOnTop()
     {
-        var sut = new Table(new Card(Color.Yellow, 3));
+        var sut = new DiscardPile(new Card(Color.Yellow, 3));
 
         sut.Throw(new Card(Color.Yellow, 7));
 
@@ -53,7 +50,7 @@ public class Tests
     public void PlayerCannotThrowCardOnTable()
     {
         var sut = new Player(new Card(Color.Green, 3));
-        var doc = new Table(new Card(Color.Yellow, 7));
+        var doc = new DiscardPile(new Card(Color.Yellow, 7));
         sut.CanThrowOn(doc)
             .Should().Be(false);
     }
@@ -62,7 +59,7 @@ public class Tests
     public void PlayerCanThrowCardOnTable()
     {
         var sut = new Player(new Card(Color.Green, 3));
-        var doc = new Table(new Card(Color.Yellow, 3));
+        var doc = new DiscardPile(new Card(Color.Yellow, 3));
         sut.CanThrowOn(doc)
             .Should().Be(true);
     }
@@ -71,7 +68,7 @@ public class Tests
     public void PlayerCanThrow_WithMultipleCardsInHand()
     {
         var sut = new Player(new Card(Color.Green, 8), new Card(Color.Yellow, 3));
-        var doc = new Table(new Card(Color.Yellow, 3));
+        var doc = new DiscardPile(new Card(Color.Yellow, 3));
         sut.CanThrowOn(doc)
             .Should().Be(true);
     }
@@ -80,7 +77,7 @@ public class Tests
     public void PlayerThrowCardOnTable()
     {
         var sut = new Player(new Card(Color.Green, 8), new Card(Color.Yellow, 5));
-        var doc = new Table(new Card(Color.Yellow, 3));
+        var doc = new DiscardPile(new Card(Color.Yellow, 3));
 
         sut.ThrowCardAt(doc, new Card(Color.Yellow, 5));
 
@@ -88,9 +85,20 @@ public class Tests
         doc.CardOnTop.Should().Be(new Card(Color.Yellow, 5));
         sut.Hand.Should().ContainSingle().And.Contain(new Card(Color.Green, 8));
     }
-    
-    //Precondicionar
-    //Robar
+
+    [Test]
+    public void DrawFromDeck()
+    {
+        var sut = new Player(new Card(Color.Yellow, 3));
+        var doc = new DrawPile(new Card(Color.Green, 8));
+        
+        sut.DrawFrom(doc);
+
+        using var _ = new AssertionScope();
+        sut.Hand.Contains(new Card(Color.Green, 8)).Should().BeTrue();
+        doc.Should().BeEmpty();
+    }
+    //Barajar la pila de descartes si se acaba el mazo
 }
 
 public class Player
@@ -104,19 +112,24 @@ public class Player
 
     public IEnumerable<Card> Hand => hand;
 
-    public bool CanThrowOn(Table table)
+    public bool CanThrowOn(DiscardPile discardPile)
     {
-        return hand.Any(card => card.CanBeThrownOnTopOf(table.CardOnTop));
+        return hand.Any(card => card.CanBeThrownOnTopOf(discardPile.CardOnTop));
     }
 
-    public void ThrowCardAt(Table table, Card card)
+    public void ThrowCardAt(DiscardPile discardPile, Card card)
     {
-        if (!CanThrowOn(table))
+        if (!CanThrowOn(discardPile))
             throw new InvalidOperationException("Cannot throw card on table");
         if(!hand.Contains(card))
             throw new InvalidOperationException("Cannot throw card not in hand");
         
-        table.Throw(card);
+        discardPile.Throw(card);
         hand.Remove(card);
+    }
+
+    public void DrawFrom(DrawPile drawPile)
+    {
+        hand.Add(drawPile.Draw());
     }
 }
