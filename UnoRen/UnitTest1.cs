@@ -180,7 +180,8 @@ public class Tests
     {
         var player1 = new Player(MatchingCard, OtherCard);
         var player2 = new Player(OtherCard);
-        var game = new Game(player1, player2, new DrawPile(OtherCard), new DiscardPile(SomeCard));
+        var discardPile = new DiscardPile(SomeCard);
+        var game = new Game(player1, player2, new DrawPile(OtherCard), discardPile);
         var sut = new PlayTurn(game);
         
         sut.Throw(MatchingCard);
@@ -188,7 +189,7 @@ public class Tests
         using var _ = new AssertionScope();
         game.CurrentPlayer.Should().Be(player2);
         player1.Hand.Should().NotContain(MatchingCard);
-        
+        discardPile.CardOnTop.Should().Be(MatchingCard);
     }
     //Barajar la pila de descartes si se acaba el mazo
 }
