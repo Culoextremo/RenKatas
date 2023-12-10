@@ -129,6 +129,21 @@ public class Tests
         
     }
     
+    [Test]
+    public void fgsdfsd()
+    {
+        var player1 = new Player(MatchingCard);
+        var player2 = new Player(UnmatchingCard);
+        var player3 = new Player(UnmatchingCard);
+        var sut = new Game(new DrawPile(OtherCard), new DiscardPile(SomeCard), player1, player2, player3);
+
+        sut.EndTurn();
+        sut.EndTurn();
+        
+        sut.WhoseIsTheTurn.Should().Be(player3);
+        
+    }
+    
     //Barajar la pila de descartes si se acaba el mazo
 }
 
@@ -136,22 +151,25 @@ public class Game
 {
     readonly Player player1;
     readonly Player player2;
-    private Player whoseIsTheTurn;
-    public Game(Player player1, Player player2, DrawPile drawPile, DiscardPile discardPile)
+    private readonly Player[] players;
+    private int turn;
+    public Game(Player player1, Player player2, DrawPile drawPile, DiscardPile discardPile) : this(drawPile, discardPile, player1, player2)
     {
         this.player1 = player1;
         this.player2 = player2;
-        whoseIsTheTurn = player1;
+        turn = 0;
     }
 
-    public Player WhoseIsTheTurn
+    public Game(DrawPile drawPile, DiscardPile discardPile, params Player[] players)
     {
-        get => whoseIsTheTurn;
-        set => whoseIsTheTurn = value;
+        this.players = players;
+        turn = 0;
     }
+
+    public Player WhoseIsTheTurn => players[turn];
 
     public void EndTurn()
     {
-        WhoseIsTheTurn = player2;
+        turn++;
     }
 }
