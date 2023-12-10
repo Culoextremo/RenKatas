@@ -16,5 +16,8 @@ public class Gameplay
             return;
 
         game.MakePlayerDraw();
+
+        if(!game.CurrentPlayerCanThrow)
+            game.EndTurn();
     }
 }

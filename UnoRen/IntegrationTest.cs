@@ -38,4 +38,17 @@ public class IntegrationTest
         player1.Hand.Should().Contain(MatchingCard);
         game.CurrentPlayer.Should().Be(player1);
     }
+    [Test]
+    public void EndTurn_WhenPlayerCannotThrow_AfterDrawing()
+    {
+        var player1 = new Player(UnmatchingCard);
+        var player2 = new Player(OtherCard);
+        var game = new Game(player1, player2, new DrawPile(UnmatchingCard), new DiscardPile(SomeCard));
+
+        var sut = new Gameplay(game);
+        sut.BeginTurn();
+        
+        using var _ = new AssertionScope();
+        game.CurrentPlayer.Should().Be(player2);
+    }
 }
