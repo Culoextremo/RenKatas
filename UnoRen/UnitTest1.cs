@@ -112,7 +112,7 @@ public class Tests
         var player2 = new Player(UnmatchingCard);
         var sut = new Game(player1, player2, new DrawPile(OtherCard), new DiscardPile(SomeCard));
 
-        sut.WhoseIsTheTurn
+        sut.CurrentPlayer
             .Should().Be(player1);
     }
 
@@ -125,7 +125,7 @@ public class Tests
 
         sut.EndTurn();
 
-        sut.WhoseIsTheTurn.Should().Be(player2);
+        sut.CurrentPlayer.Should().Be(player2);
     }
 
     [Test]
@@ -139,7 +139,7 @@ public class Tests
         sut.EndTurn();
         sut.EndTurn();
 
-        sut.WhoseIsTheTurn.Should().Be(player3);
+        sut.CurrentPlayer.Should().Be(player3);
     }
     
     [Test]
@@ -152,11 +152,11 @@ public class Tests
         sut.EndTurn();
         sut.EndTurn();
 
-        sut.WhoseIsTheTurn.Should().Be(player1);
+        sut.CurrentPlayer.Should().Be(player1);
     }
 
     [Test]
-    public void asdfjshd()
+    public void CurrentPlayerCanThrow()
     {
         var player1 = new Player(MatchingCard);
         var player2 = new Player(OtherCard);
@@ -166,7 +166,7 @@ public class Tests
     }
     
     [Test]
-    public void asdfjhfshd()
+    public void CurrentPlayerCannotThrow()
     {
         var player1 = new Player(UnmatchingCard);
         var player2 = new Player(OtherCard);
@@ -176,30 +176,35 @@ public class Tests
     }
     
     [Test]
-    public void ghfdjgfh()
+    public void EndTurnAfterThrowingCard()
     {
-        var player1 = new Player(MatchingCard);
+        var player1 = new Player(MatchingCard, OtherCard);
         var player2 = new Player(OtherCard);
         var game = new Game(player1, player2, new DrawPile(OtherCard), new DiscardPile(SomeCard));
-
-        var sut = new ThrowCard(game);
-        sut.Run(MatchingCard);
-        game.WhoseIsTheTurn.Should().Be(player2);
+        var sut = new PlayTurn(game);
+        
+        sut.Throw(MatchingCard);
+        
+        using var _ = new AssertionScope();
+        game.CurrentPlayer.Should().Be(player2);
+        player1.Hand.Should().NotContain(MatchingCard);
+        
     }
     //Barajar la pila de descartes si se acaba el mazo
 }
 
-public class ThrowCard
+public class PlayTurn
 {
     private readonly Game game;
 
-    public ThrowCard(Game game)
+    public PlayTurn(Game game)
     {
         this.game = game;
     }
 
-    public void Run(Card unmatchingCard)
+    public void Throw(Card card)
     {
+        game.Throw(card);
         game.EndTurn();
     }
 }

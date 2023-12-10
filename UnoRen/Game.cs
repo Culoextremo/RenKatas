@@ -24,12 +24,17 @@ public class Game
         this.discardPile = discardPile;
     }
 
-    public Player WhoseIsTheTurn => players[turn % players.Length];
+    public Player CurrentPlayer => players[turn % players.Length];
 
-    public bool CurrentPlayerCanThrow => WhoseIsTheTurn.CanThrowOn(discardPile);
+    public bool CurrentPlayerCanThrow => CurrentPlayer.CanThrowOn(discardPile);
 
     public void EndTurn()
     {
         turn++;
+    }
+
+    public void Throw(Card card)
+    {
+        CurrentPlayer.ThrowCardAt(discardPile, card);
     }
 }
