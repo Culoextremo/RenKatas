@@ -105,10 +105,27 @@ public class Tests
     }
 
     [Test]
-    public void xkdjcgdf()
+    public void Player1Begins()
     {
-        var sut = new Game(new Player(MatchingCard), new Player(UnmatchingCard), new DrawPile(OtherCard), new DiscardPile(SomeCard));
+        var player1 = new Player(MatchingCard);
+        var player2 = new Player(UnmatchingCard);
+        var sut = new Game(player1, player2, new DrawPile(OtherCard), new DiscardPile(SomeCard));
         
+        sut.WhoseIsTheTurn
+            .Should().Be(player1);
+        
+    }
+    
+    [Test]
+    public void asdasdasdasd()
+    {
+        var player1 = new Player(MatchingCard);
+        var player2 = new Player(UnmatchingCard);
+        var sut = new Game(player1, player2, new DrawPile(OtherCard), new DiscardPile(SomeCard));
+
+        sut.EndTurn();
+        
+        sut.WhoseIsTheTurn.Should().Be(player2);
     }
     
     //Barajar la pila de descartes si se acaba el mazo
@@ -116,8 +133,17 @@ public class Tests
 
 public class Game
 {
-    public Game(Player player, Player player1, DrawPile drawPile, DiscardPile discardPile)
+    readonly Player player1;
+
+    public Game(Player player1, Player player2, DrawPile drawPile, DiscardPile discardPile)
     {
-        throw new NotImplementedException();
+        this.player1 = player1;
+    }
+
+    public Player WhoseIsTheTurn => player1;
+
+    public void EndTurn()
+    {
+        
     }
 }
