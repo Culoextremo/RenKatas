@@ -1,10 +1,10 @@
 ﻿namespace UnoRen;
 
-public class PlayTurn
+public class ThrowCard
 {
     private readonly Game game;
 
-    public PlayTurn(Game game)
+    public ThrowCard(Game game)
     {
         this.game = game;
     }
