@@ -155,34 +155,24 @@ public class Tests
         sut.WhoseIsTheTurn.Should().Be(player1);
     }
 
+    [Test]
+    public void asdfjshd()
+    {
+        var player1 = new Player(MatchingCard);
+        var player2 = new Player(OtherCard);
+        var sut = new Game(player1, player2, new DrawPile(OtherCard), new DiscardPile(SomeCard));
+
+        sut.CurrentPlayerCanThrow.Should().Be(true);
+    }
+    
+    [Test]
+    public void asdfjhfshd()
+    {
+        var player1 = new Player(UnmatchingCard);
+        var player2 = new Player(OtherCard);
+        var sut = new Game(player1, player2, new DrawPile(OtherCard), new DiscardPile(SomeCard));
+
+        sut.CurrentPlayerCanThrow.Should().Be(false);
+    }
     //Barajar la pila de descartes si se acaba el mazo
-}
-
-public class Game
-{
-    readonly Player player1;
-    readonly Player player2;
-    private readonly Player[] players;
-    private int turn;
-
-    public Game(Player player1, Player player2, DrawPile drawPile, DiscardPile discardPile) : this(drawPile,
-        discardPile, player1, player2)
-    {
-        this.player1 = player1;
-        this.player2 = player2;
-        turn = 0;
-    }
-
-    public Game(DrawPile drawPile, DiscardPile discardPile, params Player[] players)
-    {
-        this.players = players;
-        turn = 0;
-    }
-
-    public Player WhoseIsTheTurn => players[turn % players.Length];
-
-    public void EndTurn()
-    {
-        turn++;
-    }
 }
