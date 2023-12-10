@@ -11,6 +11,7 @@ public class Tests
     Card SameColorCard => new Card(Color.Yellow, 7);
     Card SameNumberAndDifferentColorCard => new Card(Color.Green, 4);
     Card UnmatchingCard => new Card(Color.Green, 8);
+
     [Test]
     public void CanThrowOnCardWithSameColor()
     {
@@ -34,7 +35,7 @@ public class Tests
             .CanBeThrownOnTopOf(UnmatchingCard)
             .Should().BeFalse();
     }
-    
+
     [Test]
     public void DefaultTableCard()
     {
@@ -51,7 +52,7 @@ public class Tests
 
         sut.CardOnTop.Should().Be(MatchingCard);
     }
-    
+
     [Test]
     public void PlayerCannotThrowCardOnTable()
     {
@@ -59,7 +60,7 @@ public class Tests
             .CanThrowOn(new DiscardPile(UnmatchingCard))
             .Should().Be(false);
     }
-    
+
     [Test]
     public void PlayerCanThrowCardOnTable()
     {
@@ -68,7 +69,7 @@ public class Tests
         sut.CanThrowOn(doc)
             .Should().Be(true);
     }
-    
+
     [Test]
     public void PlayerCanThrow_WithMultipleCardsInHand()
     {
@@ -96,7 +97,7 @@ public class Tests
     {
         var sut = new Player(SomeCard);
         var doc = new DrawPile(OtherCard);
-        
+
         sut.DrawFrom(doc);
 
         using var _ = new AssertionScope();
@@ -110,27 +111,25 @@ public class Tests
         var player1 = new Player(MatchingCard);
         var player2 = new Player(UnmatchingCard);
         var sut = new Game(player1, player2, new DrawPile(OtherCard), new DiscardPile(SomeCard));
-        
+
         sut.WhoseIsTheTurn
             .Should().Be(player1);
-        
     }
-    
+
     [Test]
-    public void asdasdasdasd()
+    public void EndTurn()
     {
         var player1 = new Player(MatchingCard);
         var player2 = new Player(UnmatchingCard);
         var sut = new Game(player1, player2, new DrawPile(OtherCard), new DiscardPile(SomeCard));
 
         sut.EndTurn();
-        
+
         sut.WhoseIsTheTurn.Should().Be(player2);
-        
     }
-    
+
     [Test]
-    public void fgsdfsd()
+    public void MoreThanTwoPlayersEndTurn()
     {
         var player1 = new Player(MatchingCard);
         var player2 = new Player(UnmatchingCard);
@@ -139,11 +138,23 @@ public class Tests
 
         sut.EndTurn();
         sut.EndTurn();
-        
+
         sut.WhoseIsTheTurn.Should().Be(player3);
-        
     }
     
+    [Test]
+    public void LastPlayerTurnIsFollowedByFirst()
+    {
+        var player1 = new Player(MatchingCard);
+        var player2 = new Player(UnmatchingCard);
+        var sut = new Game(player1, player2, new DrawPile(OtherCard), new DiscardPile(SomeCard));
+
+        sut.EndTurn();
+        sut.EndTurn();
+
+        sut.WhoseIsTheTurn.Should().Be(player1);
+    }
+
     //Barajar la pila de descartes si se acaba el mazo
 }
 
@@ -153,7 +164,9 @@ public class Game
     readonly Player player2;
     private readonly Player[] players;
     private int turn;
-    public Game(Player player1, Player player2, DrawPile drawPile, DiscardPile discardPile) : this(drawPile, discardPile, player1, player2)
+
+    public Game(Player player1, Player player2, DrawPile drawPile, DiscardPile discardPile) : this(drawPile,
+        discardPile, player1, player2)
     {
         this.player1 = player1;
         this.player2 = player2;
@@ -166,7 +179,7 @@ public class Game
         turn = 0;
     }
 
-    public Player WhoseIsTheTurn => players[turn];
+    public Player WhoseIsTheTurn => players[turn % players.Length];
 
     public void EndTurn()
     {
