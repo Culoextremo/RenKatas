@@ -191,7 +191,41 @@ public class Tests
         player1.Hand.Should().NotContain(MatchingCard);
         discardPile.CardOnTop.Should().Be(MatchingCard);
     }
+
+    [Test]
+
+    public void sdgfsdfg()
+    {
+        var player1 = new Player(UnmatchingCard);
+        var player2 = new Player(OtherCard);
+        var game = new Game(player1, player2, new DrawPile(MatchingCard), new DiscardPile(SomeCard));
+
+        var sut = new Gameplay(game);
+        sut.BeginTurn();
+        
+        using var _ = new AssertionScope();
+        player1.Hand.Should().Contain(MatchingCard);
+        game.CurrentPlayer.Should().Be(player1);
+    }
     //Barajar la pila de descartes si se acaba el mazo
+}
+
+public class Gameplay
+{
+    private readonly Game game;
+
+    public Gameplay(Game game)
+    {
+        this.game = game;
+    }
+
+    public void BeginTurn()
+    {
+        if (game.CurrentPlayerCanThrow)
+            return;
+
+        game.MakePlayerDraw();
+    }
 }
 
 public class PlayTurn
