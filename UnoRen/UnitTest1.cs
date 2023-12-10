@@ -174,5 +174,32 @@ public class Tests
 
         sut.CurrentPlayerCanThrow.Should().Be(false);
     }
+    
+    [Test]
+    public void ghfdjgfh()
+    {
+        var player1 = new Player(MatchingCard);
+        var player2 = new Player(OtherCard);
+        var game = new Game(player1, player2, new DrawPile(OtherCard), new DiscardPile(SomeCard));
+
+        var sut = new ThrowCard(game);
+        sut.Run(MatchingCard);
+        game.WhoseIsTheTurn.Should().Be(player2);
+    }
     //Barajar la pila de descartes si se acaba el mazo
+}
+
+public class ThrowCard
+{
+    private readonly Game game;
+
+    public ThrowCard(Game game)
+    {
+        this.game = game;
+    }
+
+    public void Run(Card unmatchingCard)
+    {
+        game.EndTurn();
+    }
 }
