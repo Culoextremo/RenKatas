@@ -1,9 +1,10 @@
 using FluentAssertions;
 using FluentAssertions.Execution;
+using static UnoRen.TestApi;
 
 namespace UnoRen;
 
-public class Tests
+public class UnitTests
 {
     Card SomeCard => new Card(Color.Yellow, 4);
     Card OtherCard => new Card(Color.Yellow, 1);
