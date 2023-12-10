@@ -1,17 +1,11 @@
 using FluentAssertions;
 using FluentAssertions.Execution;
+using static UnoRen.TestApi;
 
 namespace UnoRen;
 
-public class Tests
+public class UnitTests
 {
-    Card SomeCard => new Card(Color.Yellow, 4);
-    Card OtherCard => new Card(Color.Yellow, 1);
-    Card MatchingCard => SameColorCard;
-    Card SameColorCard => new Card(Color.Yellow, 7);
-    Card SameNumberAndDifferentColorCard => new Card(Color.Green, 4);
-    Card UnmatchingCard => new Card(Color.Green, 8);
-
     [Test]
     public void CanThrowOnCardWithSameColor()
     {
@@ -175,70 +169,5 @@ public class Tests
         sut.CurrentPlayerCanThrow.Should().Be(false);
     }
     
-    [Test]
-    public void EndTurnAfterThrowingCard()
-    {
-        var player1 = new Player(MatchingCard, OtherCard);
-        var player2 = new Player(OtherCard);
-        var game = new Game(player1, player2, new DrawPile(OtherCard), new DiscardPile(SomeCard));
-        var sut = new PlayTurn(game);
-        
-        sut.Throw(MatchingCard);
-        
-        using var _ = new AssertionScope();
-        game.CurrentPlayer.Should().Be(player2);
-        player1.Hand.Should().NotContain(MatchingCard);
-        
-    }
-
-    [Test]
-
-    public void sdgfsdfg()
-    {
-        var player1 = new Player(UnmatchingCard);
-        var player2 = new Player(OtherCard);
-        var game = new Game(player1, player2, new DrawPile(MatchingCard), new DiscardPile(SomeCard));
-
-        var sut = new Gameplay(game);
-        sut.BeginTurn();
-        
-        using var _ = new AssertionScope();
-        player1.Hand.Should().Contain(MatchingCard);
-        game.CurrentPlayer.Should().Be(player1);
-    }
     //Barajar la pila de descartes si se acaba el mazo
-}
-
-public class Gameplay
-{
-    private readonly Game game;
-
-    public Gameplay(Game game)
-    {
-        this.game = game;
-    }
-
-    public void BeginTurn()
-    {
-        if (game.CurrentPlayerCanThrow)
-            return;
-
-        game.MakePlayerDraw();
-    }
-}
-
-public class PlayTurn
-{
-    private readonly Game game;
-
-    public PlayTurn(Game game)
-    {
-        this.game = game;
-    }
-
-    public void Throw(Card card)
-    {
-        game.Throw(card);
-        game.EndTurn();
-    }
 }
