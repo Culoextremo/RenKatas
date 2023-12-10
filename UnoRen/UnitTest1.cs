@@ -126,6 +126,7 @@ public class Tests
         sut.EndTurn();
         
         sut.WhoseIsTheTurn.Should().Be(player2);
+        
     }
     
     //Barajar la pila de descartes si se acaba el mazo
@@ -134,16 +135,23 @@ public class Tests
 public class Game
 {
     readonly Player player1;
-
+    readonly Player player2;
+    private Player whoseIsTheTurn;
     public Game(Player player1, Player player2, DrawPile drawPile, DiscardPile discardPile)
     {
         this.player1 = player1;
+        this.player2 = player2;
+        whoseIsTheTurn = player1;
     }
 
-    public Player WhoseIsTheTurn => player1;
+    public Player WhoseIsTheTurn
+    {
+        get => whoseIsTheTurn;
+        set => whoseIsTheTurn = value;
+    }
 
     public void EndTurn()
     {
-        
+        WhoseIsTheTurn = player2;
     }
 }
