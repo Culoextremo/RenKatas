@@ -103,5 +103,21 @@ public class Tests
         sut.Hand.Contains(OtherCard).Should().BeTrue();
         doc.Should().BeEmpty();
     }
+
+    [Test]
+    public void xkdjcgdf()
+    {
+        var sut = new Game(new Player(MatchingCard), new Player(UnmatchingCard), new DrawPile(OtherCard), new DiscardPile(SomeCard));
+        
+    }
+    
     //Barajar la pila de descartes si se acaba el mazo
+}
+
+public class Game
+{
+    public Game(Player player, Player player1, DrawPile drawPile, DiscardPile discardPile)
+    {
+        throw new NotImplementedException();
+    }
 }
