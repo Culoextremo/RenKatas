@@ -175,5 +175,27 @@ public class UnitTests
 
         sut.CurrentPlayerCanThrow.Should().Be(false);
     }
+
+    [Test]
+    public void METHOD()
+    {
+        var player1 = new Player(MatchingCard);
+        var player2 = new Player(OtherCard);
+        var sut = new Game(player1, player2, new DrawPile(OtherCard), new DiscardPile(SomeCard));
+        
+        sut.Throw(MatchingCard);
+        
+        sut.GameOver.Should().BeTrue();
+    }
+    [Test]
+    public void asdasd()
+    {
+        var player1 = new Player(MatchingCard);
+        var player2 = new Player(OtherCard);
+        var sut = new Game(player1, player2, new DrawPile(OtherCard), new DiscardPile(SomeCard));
+        
+        sut.Playing
+            .Should().BeTrue();
+    }
     //Barajar la pila de descartes si se acaba el mazo
 }
