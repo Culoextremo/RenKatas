@@ -15,4 +15,9 @@ public struct Card
     {
         return other.color == this.color || other.number == this.number;
     }
+
+    public override string ToString()
+    {
+        return $"{Enum.GetName(color)} {number}";
+    }
 }

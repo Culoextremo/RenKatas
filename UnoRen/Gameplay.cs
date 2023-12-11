@@ -31,7 +31,7 @@ public class Gameplay
 
             if (game.CurrentPlayerCanThrow)
             {
-                throwCard.Throw(await input.ChooseCard());
+                await throwCard.Throw(await input.ChooseCard(), view);
                 continue;
             }
 
@@ -40,5 +40,6 @@ public class Gameplay
             if(!game.CurrentPlayerCanThrow)
                 game.EndTurn();
         }
+        view.EndGame();
     }
 }
