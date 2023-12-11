@@ -31,6 +31,7 @@ public class Game
     public bool CurrentPlayerCanThrow => CurrentPlayer.CanThrowOn(discardPile);
     public bool GameOver => !Playing;
     public bool Playing => players.All(x => x.Hand.Any());
+    public int Turn => turn;
 
     public void EndTurn()
     {

@@ -6,6 +6,7 @@ public class Gameplay
     private readonly Game game;
     private readonly ThrowCard throwCard;
     private readonly ThrowCardInput input;
+    private readonly GameView view;
 
     public Gameplay(Game game, ThrowCard throwCard, ThrowCardInput input)
     {
@@ -13,18 +14,31 @@ public class Gameplay
         this.throwCard = throwCard;
         this.input = input;
     }
-
-    public async Task BeginTurn()
+    
+    public Gameplay(Game game, ThrowCard throwCard, ThrowCardInput input, GameView view)
     {
-        if (game.CurrentPlayerCanThrow)
+        this.game = game;
+        this.throwCard = throwCard;
+        this.input = input;
+        this.view = view;
+    }
+
+    public async Task Play()
+    {
+        while (game.Playing)
         {
-            throwCard.Throw(await input.ChooseCard());
-            return;
+            view?.BeginTurn(game.Turn);
+
+            if (game.CurrentPlayerCanThrow)
+            {
+                throwCard.Throw(await input.ChooseCard());
+                return;
+            }
+
+            game.MakePlayerDraw();
+
+            if(!game.CurrentPlayerCanThrow)
+                game.EndTurn();
         }
-
-        game.MakePlayerDraw();
-
-        if(!game.CurrentPlayerCanThrow)
-            game.EndTurn();
     }
 }

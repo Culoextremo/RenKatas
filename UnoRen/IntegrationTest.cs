@@ -32,7 +32,7 @@ public class IntegrationTest
         var game = new Game(player1, player2, new DrawPile(MatchingCard), new DiscardPile(SomeCard));
 
         var sut = new Gameplay(game, new ThrowCard(game), new FakeInput(5f, MatchingCard));
-        sut.BeginTurn();
+        sut.Play();
         
         using var _ = new AssertionScope();
         player1.Hand.Should().Contain(MatchingCard);
@@ -46,7 +46,7 @@ public class IntegrationTest
         var game = new Game(player1, player2, new DrawPile(UnmatchingCard), new DiscardPile(SomeCard));
 
         var sut = new Gameplay(game, new ThrowCard(game), new FakeInput(5f, MatchingCard));
-        sut.BeginTurn();
+        sut.Play();
         
         using var _ = new AssertionScope();
         game.CurrentPlayer.Should().Be(player2);
@@ -62,7 +62,7 @@ public class IntegrationTest
 
         var doc = new ThrowCard(game);
         var sut = new Gameplay(game, doc,  new FakeInput(0.5f, MatchingCard));
-        sut.BeginTurn();
+        sut.Play();
         await Task.Delay(600);
         game.CurrentPlayer.Should().Be(player2);
     }
@@ -70,13 +70,13 @@ public class IntegrationTest
     [Test]
     public async Task fghdghfd()
     {
-        var player1 = new Player(MatchingCard);
+        var player1 = new Player(MatchingCard, OtherCard);
         var player2 = new Player(UnmatchingCard);
         var game = new Game(player1, player2, new DrawPile(UnmatchingCard), new DiscardPile(SomeCard));
 
         var doc = new ThrowCard(game);
         var sut = new Gameplay(game, doc,  new FakeInput(0.5f, MatchingCard));
-        sut.BeginTurn();
+        sut.Play();
         await Task.Delay(600);
         player2.Hand.Count().Should().Be(2);
         
