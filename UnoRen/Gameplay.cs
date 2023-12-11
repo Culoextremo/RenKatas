@@ -32,7 +32,7 @@ public class Gameplay
             if (game.CurrentPlayerCanThrow)
             {
                 throwCard.Throw(await input.ChooseCard());
-                return;
+                continue;
             }
 
             game.MakePlayerDraw();
