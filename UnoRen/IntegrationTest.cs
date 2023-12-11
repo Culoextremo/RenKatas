@@ -61,10 +61,25 @@ public class IntegrationTest
         var game = new Game(player1, player2, new DrawPile(UnmatchingCard), new DiscardPile(SomeCard));
 
         var doc = new ThrowCard(game);
-        var sut = new Gameplay(game, doc,  new FakeInput(5f, MatchingCard));
+        var sut = new Gameplay(game, doc,  new FakeInput(0.5f, MatchingCard));
         sut.BeginTurn();
-        await Task.Delay(6000);
+        await Task.Delay(600);
         game.CurrentPlayer.Should().Be(player2);
+    }
+    
+    [Test]
+    public async Task fghdghfd()
+    {
+        var player1 = new Player(MatchingCard);
+        var player2 = new Player(UnmatchingCard);
+        var game = new Game(player1, player2, new DrawPile(UnmatchingCard), new DiscardPile(SomeCard));
+
+        var doc = new ThrowCard(game);
+        var sut = new Gameplay(game, doc,  new FakeInput(0.5f, MatchingCard));
+        sut.BeginTurn();
+        await Task.Delay(600);
+        player2.Hand.Count().Should().Be(2);
+        
     }
 }
 
