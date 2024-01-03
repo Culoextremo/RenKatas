@@ -81,7 +81,7 @@ public class GildedRoseTest
     }
     
     [Test]
-    public void afgdsdfg()
+    public void CapQuality()
     {
         var items = new List<Item> { new Item { Name = "Aged Brie", SellIn = 0, Quality = 50 } };
         var sut = new GildedRose(items);
@@ -89,5 +89,17 @@ public class GildedRoseTest
         sut.UpdateQuality();
         
         sut.Items.Single().Quality.Should().Be(50);
+    }
+
+    [Test]
+    public void Sulfuras()
+    {
+        var items = new List<Item> { new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = -1, Quality = 80 } };
+        var sut = new GildedRose(items);
+        
+        sut.UpdateQuality();
+        
+        sut.Items.Single().SellIn.Should().Be(-1);
+        sut.Items.Single().Quality.Should().Be(80);
     }
 }
