@@ -114,6 +114,17 @@ public class GildedRoseTest
         sut.Items.Single().SellIn.Should().Be(9);
         sut.Items.Single().Quality.Should().Be(3);
     }
+    [Test]
+    public void sdfgdsfgds()
+    {
+        var items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 11, Quality = 1 } };
+        var sut = new GildedRose(items);
+        
+        sut.UpdateQuality();
+        
+        sut.Items.Single().SellIn.Should().Be(10);
+        sut.Items.Single().Quality.Should().Be(2);
+    }
     
     [Test]
     public void ReventaQUEDAMUYPOCO()
@@ -126,6 +137,19 @@ public class GildedRoseTest
         sut.Items.Single().SellIn.Should().Be(4);
         sut.Items.Single().Quality.Should().Be(4);
     }
+    
+    [Test]
+    public void afgdsfgdsf()
+    {
+        var items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 6, Quality = 1 } };
+        var sut = new GildedRose(items);
+        
+        sut.UpdateQuality();
+        
+        sut.Items.Single().SellIn.Should().Be(5);
+        sut.Items.Single().Quality.Should().Be(3);
+    }
+    
     
     [Test]
     public void VentaDeEntradas()
@@ -150,5 +174,17 @@ public class GildedRoseTest
         
         sut.Items.Single().SellIn.Should().Be(-1);
         sut.Items.Single().Quality.Should().Be(0);
+    }
+    
+    [Test]
+    public void sdfgfds()
+    {
+        var items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 1, Quality = 10 } };
+        var sut = new GildedRose(items);
+        
+        sut.UpdateQuality();
+        
+        sut.Items.Single().SellIn.Should().Be(0);
+        sut.Items.Single().Quality.Should().Be(13);
     }
 }
