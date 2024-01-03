@@ -79,4 +79,15 @@ public class GildedRoseTest
         sut.Items.Single().SellIn.Should().Be(-1);
         sut.Items.Single().Quality.Should().Be(9);
     }
+    
+    [Test]
+    public void afgdsdfg()
+    {
+        var items = new List<Item> { new Item { Name = "Aged Brie", SellIn = 0, Quality = 50 } };
+        var sut = new GildedRose(items);
+        
+        sut.UpdateQuality();
+        
+        sut.Items.Single().Quality.Should().Be(50);
+    }
 }
