@@ -22,10 +22,10 @@ public class GildedRose
             }
             else
             {
+                TryIncreaseQuality(i);
+
                 if (items[i].Quality < 50)
                 {
-                    items[i].Quality = items[i].Quality + 1;
-
                     if (IsBackstage(i))
                     {
                         if (items[i].SellIn < 11)
