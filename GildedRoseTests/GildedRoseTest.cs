@@ -151,4 +151,17 @@ public class GildedRoseTest
         sut.Items.Single().SellIn.Should().Be(-1);
         sut.Items.Single().Quality.Should().Be(0);
     }
+    
+    [Test]
+    public void sgdfhsdfgdsfgsdf()
+    {
+        var items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 3, Quality = 49 } };
+        var sut = new GildedRose(items);
+        
+        sut.EndDay();
+        
+        sut.Items.Single().SellIn.Should().Be(2);
+        sut.Items.Single().Quality.Should().Be(50);
+    }
+    
 }
