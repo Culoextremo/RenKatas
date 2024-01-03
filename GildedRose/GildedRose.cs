@@ -52,13 +52,7 @@ public class GildedRose
                 {
                     if (!IsBackstage(i))
                     {
-                        if (items[i].Quality > 0)
-                        {
-                            if (items[i].Name != "Sulfuras, Hand of Ragnaros")
-                            {
-                                items[i].Quality = items[i].Quality - 1;
-                            }
-                        }
+                        TryDecreaseQuality(i);
                     }
                     else
                     {
