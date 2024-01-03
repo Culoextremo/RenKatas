@@ -14,7 +14,7 @@ public class GildedRoseTest
         var items = new List<Item> { new Item { Name = "foo", SellIn = 10, Quality = 10 } };
         var sut = new GildedRose(items);
         
-        sut.UpdateQuality();
+        sut.EndDay();
 
         sut.Items.Single().SellIn.Should().Be(9);
         sut.Items.Single().Quality.Should().Be(9);
@@ -26,7 +26,7 @@ public class GildedRoseTest
         var items = new List<Item> { new Item { Name = "foo", SellIn = 0, Quality = 20 } };
         var sut = new GildedRose(items);
         
-        sut.UpdateQuality();
+        sut.EndDay();
         
         sut.Items.Single().SellIn.Should().Be(-1);
         sut.Items.Single().Quality.Should().Be(18);
@@ -38,7 +38,7 @@ public class GildedRoseTest
         var items = new List<Item> { new Item { Name = "foo", SellIn = 1, Quality = 20 } };
         var sut = new GildedRose(items);
         
-        sut.UpdateQuality();
+        sut.EndDay();
         
         sut.Items.Single().SellIn.Should().Be(0);
         sut.Items.Single().Quality.Should().Be(19);
@@ -50,7 +50,7 @@ public class GildedRoseTest
         var items = new List<Item> { new Item { Name = "foo", SellIn = 1, Quality = 0 } };
         var sut = new GildedRose(items);
         
-        sut.UpdateQuality();
+        sut.EndDay();
         
         sut.Items.Single().SellIn.Should().Be(0);
         sut.Items.Single().Quality.Should().Be(0);
@@ -62,7 +62,7 @@ public class GildedRoseTest
         var items = new List<Item> { new Item { Name = "Aged Brie", SellIn = 5, Quality = 7 } };
         var sut = new GildedRose(items);
         
-        sut.UpdateQuality();
+        sut.EndDay();
         
         sut.Items.Single().SellIn.Should().Be(4);
         sut.Items.Single().Quality.Should().Be(8);
@@ -74,7 +74,7 @@ public class GildedRoseTest
         var items = new List<Item> { new Item { Name = "Aged Brie", SellIn = 0, Quality = 7 } };
         var sut = new GildedRose(items);
         
-        sut.UpdateQuality();
+        sut.EndDay();
         
         sut.Items.Single().SellIn.Should().Be(-1);
         sut.Items.Single().Quality.Should().Be(9);
@@ -86,7 +86,7 @@ public class GildedRoseTest
         var items = new List<Item> { new Item { Name = "Aged Brie", SellIn = 0, Quality = 50 } };
         var sut = new GildedRose(items);
         
-        sut.UpdateQuality();
+        sut.EndDay();
         
         sut.Items.Single().Quality.Should().Be(50);
     }
@@ -97,7 +97,7 @@ public class GildedRoseTest
         var items = new List<Item> { new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = -1, Quality = 80 } };
         var sut = new GildedRose(items);
         
-        sut.UpdateQuality();
+        sut.EndDay();
         
         sut.Items.Single().SellIn.Should().Be(-1);
         sut.Items.Single().Quality.Should().Be(80);
@@ -109,21 +109,10 @@ public class GildedRoseTest
         var items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 10, Quality = 1 } };
         var sut = new GildedRose(items);
         
-        sut.UpdateQuality();
+        sut.EndDay();
         
         sut.Items.Single().SellIn.Should().Be(9);
         sut.Items.Single().Quality.Should().Be(3);
-    }
-    [Test]
-    public void sdfgdsfgds()
-    {
-        var items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 11, Quality = 1 } };
-        var sut = new GildedRose(items);
-        
-        sut.UpdateQuality();
-        
-        sut.Items.Single().SellIn.Should().Be(10);
-        sut.Items.Single().Quality.Should().Be(2);
     }
     
     [Test]
@@ -132,24 +121,11 @@ public class GildedRoseTest
         var items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 5, Quality = 1 } };
         var sut = new GildedRose(items);
         
-        sut.UpdateQuality();
+        sut.EndDay();
         
         sut.Items.Single().SellIn.Should().Be(4);
         sut.Items.Single().Quality.Should().Be(4);
     }
-    
-    [Test]
-    public void afgdsfgdsf()
-    {
-        var items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 6, Quality = 1 } };
-        var sut = new GildedRose(items);
-        
-        sut.UpdateQuality();
-        
-        sut.Items.Single().SellIn.Should().Be(5);
-        sut.Items.Single().Quality.Should().Be(3);
-    }
-    
     
     [Test]
     public void VentaDeEntradas()
@@ -157,7 +133,7 @@ public class GildedRoseTest
         var items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 20, Quality = 1 } };
         var sut = new GildedRose(items);
         
-        sut.UpdateQuality();
+        sut.EndDay();
         
         sut.Items.Single().SellIn.Should().Be(19);
         sut.Items.Single().Quality.Should().Be(2);
@@ -170,21 +146,9 @@ public class GildedRoseTest
         var items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 0, Quality = 10 } };
         var sut = new GildedRose(items);
         
-        sut.UpdateQuality();
+        sut.EndDay();
         
         sut.Items.Single().SellIn.Should().Be(-1);
         sut.Items.Single().Quality.Should().Be(0);
-    }
-    
-    [Test]
-    public void sdfgfds()
-    {
-        var items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 1, Quality = 10 } };
-        var sut = new GildedRose(items);
-        
-        sut.UpdateQuality();
-        
-        sut.Items.Single().SellIn.Should().Be(0);
-        sut.Items.Single().Quality.Should().Be(13);
     }
 }

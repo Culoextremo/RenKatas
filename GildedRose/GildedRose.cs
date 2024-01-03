@@ -12,46 +12,51 @@ public class GildedRose
         this.items = items;
     }
 
-    public void UpdateQuality()
+    public void EndDay()
     {
         for (var i = 0; i < items.Count; i++)
         {
-            if (items[i].Name != "Aged Brie" && !IsBackstage(i))
+            UpdateItemQuality(i);
+        }
+    }
+
+    void UpdateItemQuality(int i)
+    {
+        if(items[i].Name != "Aged Brie" && !IsBackstage(i))
+        {
+            TryDecreaseQuality(i);
+        }
+        else
+        {
+            TryIncreaseQuality(i);
+
+            if(items[i].Quality < 50)
             {
-                TryDecreaseQuality(i);
+                if(IsBackstage(i))
+                {
+                    UpdateQualityOfBackstageTicket(i);
+                }
+            }
+        }
+
+        DecreaseSellin(i);
+
+        if(items[i].SellIn < 0)
+        {
+            if(items[i].Name != "Aged Brie")
+            {
+                if(!IsBackstage(i))
+                {
+                    TryDecreaseQuality(i);
+                }
+                else
+                {
+                    items[i].Quality = 0;
+                }
             }
             else
             {
                 TryIncreaseQuality(i);
-
-                if (items[i].Quality < 50)
-                {
-                    if (IsBackstage(i))
-                    {
-                        UpdateQualityOfBackstageTicket(i);
-                    }
-                }
-            }
-
-            DecreaseSellin(i);
-
-            if (items[i].SellIn < 0)
-            {
-                if (items[i].Name != "Aged Brie")
-                {
-                    if (!IsBackstage(i))
-                    {
-                        TryDecreaseQuality(i);
-                    }
-                    else
-                    {
-                        items[i].Quality = 0;
-                    }
-                }
-                else
-                {
-                    TryIncreaseQuality(i);
-                }
             }
         }
     }

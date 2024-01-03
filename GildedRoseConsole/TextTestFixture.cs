@@ -52,5 +52,5 @@ for(var i = 0; i < days; i++)
     }
 
     Console.WriteLine("");
-    app.UpdateQuality();
+    app.EndDay();
 }
