@@ -56,7 +56,7 @@ public class GildedRose
                     }
                     else
                     {
-                        items[i].Quality = items[i].Quality - items[i].Quality;
+                        items[i].Quality = 0;
                     }
                 }
                 else
