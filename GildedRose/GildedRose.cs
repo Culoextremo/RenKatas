@@ -18,13 +18,7 @@ public class GildedRose
         {
             if (items[i].Name != "Aged Brie" && !IsBackstage(i))
             {
-                if (items[i].Quality > 0)
-                {
-                    if (items[i].Name != "Sulfuras, Hand of Ragnaros")
-                    {
-                        items[i].Quality = items[i].Quality - 1;
-                    }
-                }
+                TryDecreaseQuality(i);
             }
             else
             {
@@ -36,12 +30,12 @@ public class GildedRose
                     {
                         if (items[i].SellIn < 11)
                         {
-                            IncreaseQuality(i);
+                            TryIncreaseQuality(i);
                         }
 
                         if (items[i].SellIn < 6)
                         {
-                            IncreaseQuality(i);
+                            TryIncreaseQuality(i);
                         }
                     }
                 }
@@ -73,13 +67,24 @@ public class GildedRose
                 }
                 else
                 {
-                    IncreaseQuality(i);
+                    TryIncreaseQuality(i);
                 }
             }
         }
     }
 
-    void IncreaseQuality(int i)
+    void TryDecreaseQuality(int i)
+    {
+        if(items[i].Quality > 0)
+        {
+            if(items[i].Name != "Sulfuras, Hand of Ragnaros")
+            {
+                items[i].Quality = items[i].Quality - 1;
+            }
+        }
+    }
+
+    void TryIncreaseQuality(int i)
     {
         if(items[i].Quality < 50)
         {
