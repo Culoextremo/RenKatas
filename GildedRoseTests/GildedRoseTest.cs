@@ -21,7 +21,7 @@ public class GildedRoseTest
     }
     
     [Test]
-    public void PsdfgsdfgdsgDay()
+    public void QualityDecreasesDouble_AfterSellingDate()
     {
         var items = new List<Item> { new Item { Name = "foo", SellIn = 0, Quality = 20 } };
         var sut = new GildedRose(items);
@@ -33,7 +33,7 @@ public class GildedRoseTest
     }
     
     [Test]
-    public void PsdfgsddfagsdfgfgdsgDay()
+    public void QualityDecreasesNormaly_OnSellInDate()
     {
         var items = new List<Item> { new Item { Name = "foo", SellIn = 1, Quality = 20 } };
         var sut = new GildedRose(items);
@@ -42,5 +42,41 @@ public class GildedRoseTest
         
         sut.Items.Single().SellIn.Should().Be(0);
         sut.Items.Single().Quality.Should().Be(19);
+    }
+
+    [Test]
+    public void QualityIsNeverNegative()
+    {
+        var items = new List<Item> { new Item { Name = "foo", SellIn = 1, Quality = 0 } };
+        var sut = new GildedRose(items);
+        
+        sut.UpdateQuality();
+        
+        sut.Items.Single().SellIn.Should().Be(0);
+        sut.Items.Single().Quality.Should().Be(0);
+    }
+
+    [Test]
+    public void AgeCheese()
+    {
+        var items = new List<Item> { new Item { Name = "Aged Brie", SellIn = 5, Quality = 7 } };
+        var sut = new GildedRose(items);
+        
+        sut.UpdateQuality();
+        
+        sut.Items.Single().SellIn.Should().Be(4);
+        sut.Items.Single().Quality.Should().Be(8);
+    }
+    
+    [Test]
+    public void AgeCheeseALot()
+    {
+        var items = new List<Item> { new Item { Name = "Aged Brie", SellIn = 0, Quality = 7 } };
+        var sut = new GildedRose(items);
+        
+        sut.UpdateQuality();
+        
+        sut.Items.Single().SellIn.Should().Be(-1);
+        sut.Items.Single().Quality.Should().Be(9);
     }
 }
