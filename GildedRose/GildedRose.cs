@@ -16,7 +16,7 @@ public class GildedRose
     {
         for (var i = 0; i < items.Count; i++)
         {
-            if (items[i].Name != "Aged Brie" && items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
+            if (items[i].Name != "Aged Brie" && !IsBackstage(i))
             {
                 if (items[i].Quality > 0)
                 {
@@ -32,7 +32,7 @@ public class GildedRose
                 {
                     items[i].Quality = items[i].Quality + 1;
 
-                    if (items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
+                    if (IsBackstage(i))
                     {
                         if (items[i].SellIn < 11)
                         {
@@ -62,7 +62,7 @@ public class GildedRose
             {
                 if (items[i].Name != "Aged Brie")
                 {
-                    if (items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
+                    if (!IsBackstage(i))
                     {
                         if (items[i].Quality > 0)
                         {
@@ -86,5 +86,10 @@ public class GildedRose
                 }
             }
         }
+    }
+
+    bool IsBackstage(int i)
+    {
+        return items[i].Name == "Backstage passes to a TAFKAL80ETC concert";
     }
 }
