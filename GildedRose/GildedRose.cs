@@ -33,10 +33,7 @@ public class GildedRose
                 }
             }
 
-            if (items[i].Name != "Sulfuras, Hand of Ragnaros")
-            {
-                items[i].SellIn = items[i].SellIn - 1;
-            }
+            DecreaseSellin(i);
 
             if (items[i].SellIn < 0)
             {
@@ -56,6 +53,14 @@ public class GildedRose
                     TryIncreaseQuality(i);
                 }
             }
+        }
+    }
+
+    void DecreaseSellin(int i)
+    {
+        if(items[i].Name != "Sulfuras, Hand of Ragnaros")
+        {
+            items[i].SellIn = items[i].SellIn - 1;
         }
     }
 
