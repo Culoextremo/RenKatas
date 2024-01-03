@@ -28,15 +28,7 @@ public class GildedRose
         }
         else
         {
-            TryIncreaseQuality(i);
-
-            if(items[i].Quality < 50)
-            {
-                if(IsBackstage(i))
-                {
-                    UpdateQualityOfBackstageTicket(i);
-                }
-            }
+            jitanjáfora(i);
         }
 
         DecreaseSellin(i);
@@ -99,6 +91,17 @@ public class GildedRose
         {
             items[i].Quality++;
         }
+        
+        
+    }
+
+    void jitanjáfora(int i)
+    {
+        if(IsBackstage(i))
+        {
+            UpdateQualityOfBackstageTicket(i);
+        }
+        TryIncreaseQuality(i);
     }
 
     bool IsBackstage(int i)
