@@ -73,7 +73,7 @@ public class GildedRose
         {
             if(items[i].Name != "Sulfuras, Hand of Ragnaros")
             {
-                items[i].Quality = items[i].Quality - 1;
+                items[i].Quality--;
             }
         }
     }
@@ -82,7 +82,7 @@ public class GildedRose
     {
         if(items[i].Quality < 50)
         {
-            items[i].Quality = items[i].Quality + 1;
+            items[i].Quality++;
         }
     }
 
