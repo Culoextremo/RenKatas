@@ -28,15 +28,7 @@ public class GildedRose
                 {
                     if (IsBackstage(i))
                     {
-                        if (items[i].SellIn < 11)
-                        {
-                            TryIncreaseQuality(i);
-                        }
-
-                        if (items[i].SellIn < 6)
-                        {
-                            TryIncreaseQuality(i);
-                        }
+                        UpdateQualityOfBackstageTicket(i);
                     }
                 }
             }
@@ -64,6 +56,19 @@ public class GildedRose
                     TryIncreaseQuality(i);
                 }
             }
+        }
+    }
+
+    void UpdateQualityOfBackstageTicket(int i)
+    {
+        if(items[i].SellIn < 11)
+        {
+            TryIncreaseQuality(i);
+        }
+
+        if(items[i].SellIn < 6)
+        {
+            TryIncreaseQuality(i);
         }
     }
 
