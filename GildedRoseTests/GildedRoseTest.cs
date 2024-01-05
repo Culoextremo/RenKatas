@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using GildedRoseKata;
 using NUnit.Framework;
 
@@ -175,7 +176,7 @@ public class GildedRoseTest
     }
     
     [Test]
-    public void sgdfhsdfgdsfgsdf()
+    public void IncreaseBackstageQualityEdgeCase()
     {
         var items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 3, Quality = 49 } };
         var sut = new GildedRose(items);
@@ -220,5 +221,24 @@ public class GildedRoseTest
         
         sut.Items.Single().SellIn.Should().Be(-1);
         sut.Items.Single().Quality.Should().Be(6);
+    }
+    
+    [Test]
+    public void UpdateQualityInWinter()
+    {
+        var items = new List<Item> { new Item { Name = "foo", SellIn = 10, Quality = 10 } };
+        var sut = new GildedRose(items, true);
+        
+        sut.EndDay();
+
+        using var _ = new AssertionScope();
+        
+        sut.Items.Single().SellIn.Should().Be(9);
+        sut.Items.Single().Quality.Should().Be(10);
+        
+        sut.EndDay();
+        
+        sut.Items.Single().SellIn.Should().Be(8);
+        sut.Items.Single().Quality.Should().Be(9);
     }
 }

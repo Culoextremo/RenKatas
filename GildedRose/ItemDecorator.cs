@@ -19,12 +19,16 @@ public class ItemDecorator
         };
     }
 
-    public virtual void Tick()
+    public virtual void Tick(bool shouldUpdateQuality)
     {
-        UpdateQuality();
+        if(shouldUpdateQuality)
+        {
+            UpdateQuality();
+        }
+
         DecreaseSellin();
     }
-    
+
     public int SellIn
     {
         get => item.SellIn;
@@ -50,7 +54,7 @@ public class ItemDecorator
             TryDecreaseQuality();
         }
     }
-    
+
     protected virtual void TryDecreaseQuality()
     {
         if(Quality > 0)
@@ -63,6 +67,7 @@ public class ItemDecorator
     {
         SellIn--;
     }
+
     protected void TryIncreaseQuality()
     {
         if(Quality < 50)

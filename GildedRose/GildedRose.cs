@@ -6,16 +6,22 @@ namespace GildedRoseKata;
 
 public class GildedRose
 {
+    readonly bool winter;
+    private bool evenDay = false;
+    bool ShouldUpdateQuality => !winter || evenDay;
     public IEnumerable<ItemDecorator> Items { get; }
 
-    public GildedRose(IEnumerable<Item> items)
+    public GildedRose(IEnumerable<Item> items, bool winter = false)
     {
+        this.winter = winter;
         Items = items.Select(Decorate);
     }
 
     public void EndDay()
     {
         foreach(var item in Items)
-            item.Tick();
+            item.Tick(ShouldUpdateQuality);
+
+        evenDay = !evenDay;
     }
 }
