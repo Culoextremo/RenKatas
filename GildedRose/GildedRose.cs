@@ -33,14 +33,6 @@ public class GildedRose
     {
         items[i].UpdateQuality();
 
-        DecreaseSellin(i);
-    }
-    
-    void DecreaseSellin(int i)
-    {
-        if(items[i].Name == "Sulfuras, Hand of Ragnaros")
-            return;
-
-        items[i].SellIn--;
+        items[i].DecreaseSellin();
     }
 }

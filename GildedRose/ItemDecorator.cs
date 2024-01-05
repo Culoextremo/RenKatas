@@ -43,6 +43,13 @@ public class ItemDecorator
         }
     }
 
+    public void DecreaseSellin()
+    {
+        if(Name == "Sulfuras, Hand of Ragnaros")
+            return;
+
+        SellIn--;
+    }
     protected void TryIncreaseQuality()
     {
         if(Quality < 50)
