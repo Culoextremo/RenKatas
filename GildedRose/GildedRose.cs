@@ -22,17 +22,17 @@ public class GildedRose
 
     void UpdateItemQuality(int i)
     {
-        if(items[i].Name == "Aged Brie")
+        switch(items[i].Name)
         {
-            ComportamientoQueso(i);
-        }
-        else if(IsBackstage(i))
-        {
-            BackStageQuality(i);
-        }
-        else
-        {
-            TryDecreaseQuality(i);
+            case "Aged Brie":
+                ComportamientoQueso(i);
+                break;
+            case "Backstage passes to a TAFKAL80ETC concert":
+                BackStageQuality(i);
+                break;
+            default:
+                TryDecreaseQuality(i);
+                break;
         }
 
         DecreaseSellin(i);
@@ -40,21 +40,18 @@ public class GildedRose
         if(items[i].SellIn >= 0)
             return;
 
-        //ESTO OCURRE CUANDO ESTA PASAO DE FECHA
-        if(items[i].Name == "Aged Brie")
+        switch(items[i].Name)
         {
-            TryIncreaseQuality(i);
-        }
-        else
-        {
-            if(IsBackstage(i))
-            {
+            //ESTO OCURRE CUANDO ESTA PASAO DE FECHA
+            case "Aged Brie":
+                TryIncreaseQuality(i);
+                break;
+            case "Backstage passes to a TAFKAL80ETC concert":
                 items[i].Quality = 0;
-            }
-            else
-            {
+                break;
+            default:
                 TryDecreaseQuality(i);
-            }
+                break;
         }
     }
 
@@ -103,10 +100,5 @@ public class GildedRose
         {
             TryIncreaseQuality(i);
         }
-    }
-
-    bool IsBackstage(int i)
-    {
-        return items[i].Name == "Backstage passes to a TAFKAL80ETC concert";
     }
 }
