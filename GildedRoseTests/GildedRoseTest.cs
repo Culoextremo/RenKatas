@@ -187,7 +187,7 @@ public class GildedRoseTest
     }
 
     [Test]
-    public void kjakdjaksjd()
+    public void DecreaseConjuredQuality()
     {
         var items = new List<Item> { new Item { Name = "Conjured Mana Cake", SellIn = 10, Quality = 10 } };
         var sut = new GildedRose(items);
@@ -196,5 +196,17 @@ public class GildedRoseTest
         
         sut.Items.Single().SellIn.Should().Be(9);
         sut.Items.Single().Quality.Should().Be(8);
+    }
+    
+    [Test]
+    public void ConjuredItemQualityEdgeCase()
+    {
+        var items = new List<Item> { new Item { Name = "Conjured Mana Cake", SellIn = 10, Quality = 1 } };
+        var sut = new GildedRose(items);
+        
+        sut.EndDay();
+        
+        sut.Items.Single().SellIn.Should().Be(9);
+        sut.Items.Single().Quality.Should().Be(0);
     }
 }
