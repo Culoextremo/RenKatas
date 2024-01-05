@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace GildedRoseKata;
 
 public class GildedRose
 {
-    private readonly IList<Item> items;
-    public IEnumerable<Item> Items => items;
+    private readonly IList<ItemDecorator> items;
+    public IEnumerable<ItemDecorator> Items => items;
 
     public GildedRose(IList<Item> items)
     {
-        this.items = items;
+        this.items = items.Select(item=> new ItemDecorator(item)).ToList();
     }
 
     public void EndDay()
@@ -98,5 +99,37 @@ public class GildedRose
         {
             TryIncreaseQuality(i);
         }
+    }
+}
+
+public class ItemDecorator
+{
+    readonly Item item;
+    public string Name => item.Name;
+    public int SellIn
+    {
+        get => item.SellIn;
+        set => item.SellIn = value;
+    }
+
+    public int Quality
+    {
+        get => item.Quality;
+        set => item.Quality = value;
+    }
+
+    public ItemDecorator(Item item)
+    {
+        this.item = item;
+    }
+
+    public static implicit operator ItemDecorator(Item item)
+    {
+        return new ItemDecorator(item);
+    }
+    
+    public static implicit operator Item(ItemDecorator itemDecorator)
+    {
+        return itemDecorator.item;
     }
 }
