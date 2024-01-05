@@ -15,6 +15,7 @@ public class GildedRose
             return item.Name switch
             {
                 "Aged Brie" => new AgedBrie(item),
+                "Backstage passes to a TAFKAL80ETC concert" => new BackstagePasses(item),
                 _ => new ItemDecorator(item)
             };
         }).ToList();
@@ -30,15 +31,7 @@ public class GildedRose
 
     void UpdateItemQuality(int i)
     {
-        switch(items[i].Name)
-        {
-            case "Backstage passes to a TAFKAL80ETC concert":
-                BackStageQuality(i);
-                break;
-            default:
-                items[i].UpdateQuality();
-                break;
-        }
+        items[i].UpdateQuality();
 
         DecreaseSellin(i);
     }
@@ -49,33 +42,5 @@ public class GildedRose
             return;
 
         items[i].SellIn--;
-    }
-    
-    void TryIncreaseQuality(int i)
-    {
-        if(items[i].Quality < 50)
-        {
-            items[i].Quality++;
-        }
-    }
-
-    void BackStageQuality(int i)
-    {
-        if(items[i].SellIn <= 0)
-        {
-            items[i].Quality = 0;
-            return;
-        }
-        TryIncreaseQuality(i);
-
-        if(items[i].SellIn < 11)
-        {
-            TryIncreaseQuality(i);
-        }
-
-        if(items[i].SellIn < 6)
-        {
-            TryIncreaseQuality(i);
-        }
     }
 }
