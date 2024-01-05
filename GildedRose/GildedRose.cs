@@ -32,25 +32,15 @@ public class GildedRose
                 break;
             default:
                 TryDecreaseQuality(i);
+                if(items[i].SellIn <= 0)
+                {
+                    TryDecreaseQuality(i);
+                }
+
                 break;
         }
 
         DecreaseSellin(i);
-
-        if(items[i].SellIn >= 0)
-            return;
-
-        switch(items[i].Name)
-        {
-            //ESTO OCURRE CUANDO ESTA PASAO DE FECHA
-            case "Aged Brie":
-                break;
-            case "Backstage passes to a TAFKAL80ETC concert":
-                break;
-            default:
-                TryDecreaseQuality(i);
-                break;
-        }
     }
 
     void ComportamientoQueso(int i)
