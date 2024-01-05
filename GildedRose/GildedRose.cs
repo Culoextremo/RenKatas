@@ -5,12 +5,11 @@ namespace GildedRoseKata;
 
 public class GildedRose
 {
-    private readonly IList<ItemDecorator> items;
-    public IEnumerable<ItemDecorator> Items => items;
+    public IEnumerable<ItemDecorator> Items { get; }
 
-    public GildedRose(IList<Item> items)
+    public GildedRose(IEnumerable<Item> items)
     {
-        this.items = items.Select(item=>
+        this.Items = items.Select(item=>
         {
             return item.Name switch
             {
@@ -25,7 +24,7 @@ public class GildedRose
 
     public void EndDay()
     {
-        foreach(var item in items)
+        foreach(var item in Items)
         {
             item.UpdateQuality();
             item.DecreaseSellin();
