@@ -4,13 +4,8 @@ public class Sulfuras : ItemDecorator
 {
     public Sulfuras(Item item) : base(item) { }
 
-    protected override void UpdateQuality()
+    public override void Tick()
     {
-        // SPECIAL CASE PATTERN
-    }
-
-    protected override void DecreaseSellin()
-    {
-        // SPECIAL CASE PATTERN
+        //SPECIAL CASE PATTERN
     }
 }

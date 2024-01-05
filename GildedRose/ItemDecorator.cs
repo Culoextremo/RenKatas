@@ -19,7 +19,7 @@ public class ItemDecorator
         };
     }
 
-    public void Tick()
+    public virtual void Tick()
     {
         UpdateQuality();
         DecreaseSellin();
