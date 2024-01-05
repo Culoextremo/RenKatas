@@ -16,12 +16,4 @@ public class AgedBrie : ItemDecorator
 
         TryIncreaseQuality();
     }
-    
-    void TryIncreaseQuality()
-    {
-        if(Quality < 50)
-        {
-            Quality++;
-        }
-    }
 }

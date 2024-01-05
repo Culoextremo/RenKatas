@@ -43,4 +43,11 @@ public class ItemDecorator
         }
     }
 
+    protected void TryIncreaseQuality()
+    {
+        if(Quality < 50)
+        {
+            Quality++;
+        }
+    }
 }
