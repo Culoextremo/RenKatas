@@ -9,13 +9,13 @@ public class ItemDecorator
     public int SellIn
     {
         get => item.SellIn;
-        set => item.SellIn = value;
+        private set => item.SellIn = value;
     }
 
     public int Quality
     {
         get => item.Quality;
-        set => item.Quality = value;
+        protected set => item.Quality = value;
     }
 
     public ItemDecorator(Item item)

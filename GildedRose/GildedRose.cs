@@ -25,16 +25,10 @@ public class GildedRose
 
     public void EndDay()
     {
-        for(var i = 0; i < items.Count; i++)
+        foreach(var item in items)
         {
-            UpdateItemQuality(i);
+            item.UpdateQuality();
+            item.DecreaseSellin();
         }
-    }
-
-    void UpdateItemQuality(int i)
-    {
-        items[i].UpdateQuality();
-
-        items[i].DecreaseSellin();
     }
 }
