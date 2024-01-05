@@ -14,7 +14,7 @@ public class GildedRose
 
     public void EndDay()
     {
-        for (var i = 0; i < items.Count; i++)
+        for(var i = 0; i < items.Count; i++)
         {
             UpdateItemQuality(i);
         }
@@ -22,9 +22,13 @@ public class GildedRose
 
     void UpdateItemQuality(int i)
     {
-        if(items[i].Name == "Aged Brie" || IsBackstage(i))
+        if(items[i].Name == "Aged Brie")
         {
-            ItemsQueSubenDeCalidad(i);
+            ComportamientoQueso(i);
+        }
+        else if(IsBackstage(i))
+        {
+            BackStageQuality(i);
         }
         else
         {
@@ -36,6 +40,7 @@ public class GildedRose
         if(items[i].SellIn >= 0)
             return;
 
+        //ESTO OCURRE CUANDO ESTA PASAO DE FECHA
         if(items[i].Name == "Aged Brie")
         {
             TryIncreaseQuality(i);
@@ -53,25 +58,17 @@ public class GildedRose
         }
     }
 
+    void ComportamientoQueso(int i)
+    {
+        TryIncreaseQuality(i);
+    }
+
     void DecreaseSellin(int i)
     {
         if(items[i].Name == "Sulfuras, Hand of Ragnaros")
             return;
-        
+
         items[i].SellIn--;
-    }
-
-    void UpdateQualityOfBackstageTicket(int i)
-    {
-        if(items[i].SellIn < 11)
-        {
-            TryIncreaseQuality(i);
-        }
-
-        if(items[i].SellIn < 6)
-        {
-            TryIncreaseQuality(i);
-        }
     }
 
     void TryDecreaseQuality(int i)
@@ -91,17 +88,21 @@ public class GildedRose
         {
             items[i].Quality++;
         }
-        
-        
     }
 
-    void ItemsQueSubenDeCalidad(int i)
+    void BackStageQuality(int i)
     {
-        if(IsBackstage(i))
-        {
-            UpdateQualityOfBackstageTicket(i);
-        }
         TryIncreaseQuality(i);
+
+        if(items[i].SellIn < 11)
+        {
+            TryIncreaseQuality(i);
+        }
+
+        if(items[i].SellIn < 6)
+        {
+            TryIncreaseQuality(i);
+        }
     }
 
     bool IsBackstage(int i)
