@@ -28,7 +28,7 @@ public class GildedRose
         }
         else
         {
-            jitanjáfora(i);
+            ItemsQueSubenDeCalidad(i);
         }
 
         DecreaseSellin(i);
@@ -95,7 +95,7 @@ public class GildedRose
         
     }
 
-    void jitanjáfora(int i)
+    void ItemsQueSubenDeCalidad(int i)
     {
         if(IsBackstage(i))
         {
