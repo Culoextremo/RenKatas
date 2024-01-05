@@ -10,7 +10,14 @@ public class GildedRose
 
     public GildedRose(IList<Item> items)
     {
-        this.items = items.Select(item=> new ItemDecorator(item)).ToList();
+        this.items = items.Select(item=>
+        {
+            return item.Name switch
+            {
+                "Aged Brie" => new AgedBrie(item),
+                _ => new ItemDecorator(item)
+            };
+        }).ToList();
     }
 
     public void EndDay()
@@ -25,9 +32,6 @@ public class GildedRose
     {
         switch(items[i].Name)
         {
-            case "Aged Brie":
-                ComportamientoQueso(i);
-                break;
             case "Backstage passes to a TAFKAL80ETC concert":
                 BackStageQuality(i);
                 break;
@@ -38,17 +42,7 @@ public class GildedRose
 
         DecreaseSellin(i);
     }
-
-    void ComportamientoQueso(int i)
-    {
-        if (items[i].SellIn <= 0)
-        {
-            TryIncreaseQuality(i);
-        }
-
-        TryIncreaseQuality(i);
-    }
-
+    
     void DecreaseSellin(int i)
     {
         if(items[i].Name == "Sulfuras, Hand of Ragnaros")

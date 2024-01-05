@@ -23,7 +23,7 @@ public class ItemDecorator
         this.item = item;
     }
 
-    public void UpdateQuality()
+    public virtual void UpdateQuality()
     {
         TryDecreaseQuality();
         if(SellIn <= 0)
@@ -42,12 +42,5 @@ public class ItemDecorator
             }
         }
     }
-}
 
-public class BrieCheese : ItemDecorator
-{
-    public BrieCheese(Item item) : base(item)
-    {
-        
-    }
 }
