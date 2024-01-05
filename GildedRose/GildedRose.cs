@@ -22,33 +22,33 @@ public class GildedRose
 
     void UpdateItemQuality(int i)
     {
-        if(items[i].Name != "Aged Brie" && !IsBackstage(i))
+        if(items[i].Name == "Aged Brie" || IsBackstage(i))
         {
-            TryDecreaseQuality(i);
+            ItemsQueSubenDeCalidad(i);
         }
         else
         {
-            ItemsQueSubenDeCalidad(i);
+            TryDecreaseQuality(i);
         }
 
         DecreaseSellin(i);
 
-        if(items[i].SellIn < 0)
+        if(items[i].SellIn >= 0)
+            return;
+
+        if(items[i].Name == "Aged Brie")
         {
-            if(items[i].Name != "Aged Brie")
+            TryIncreaseQuality(i);
+        }
+        else
+        {
+            if(IsBackstage(i))
             {
-                if(!IsBackstage(i))
-                {
-                    TryDecreaseQuality(i);
-                }
-                else
-                {
-                    items[i].Quality = 0;
-                }
+                items[i].Quality = 0;
             }
             else
             {
-                TryIncreaseQuality(i);
+                TryDecreaseQuality(i);
             }
         }
     }
