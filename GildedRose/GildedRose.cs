@@ -55,10 +55,10 @@ public class GildedRose
 
     void DecreaseSellin(int i)
     {
-        if(items[i].Name != "Sulfuras, Hand of Ragnaros")
-        {
-            items[i].SellIn = items[i].SellIn - 1;
-        }
+        if(items[i].Name == "Sulfuras, Hand of Ragnaros")
+            return;
+        
+        items[i].SellIn--;
     }
 
     void UpdateQualityOfBackstageTicket(int i)
