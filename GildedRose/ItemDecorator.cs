@@ -18,6 +18,13 @@ public class ItemDecorator
             _ => new ItemDecorator(item)
         };
     }
+
+    public void Tick()
+    {
+        UpdateQuality();
+        DecreaseSellin();
+    }
+    
     public int SellIn
     {
         get => item.SellIn;
@@ -30,12 +37,12 @@ public class ItemDecorator
         protected set => item.Quality = value;
     }
 
-    public ItemDecorator(Item item)
+    protected ItemDecorator(Item item)
     {
         this.item = item;
     }
 
-    public virtual void UpdateQuality()
+    protected virtual void UpdateQuality()
     {
         TryDecreaseQuality();
         if(SellIn <= 0)
@@ -52,7 +59,7 @@ public class ItemDecorator
         }
     }
 
-    public virtual void DecreaseSellin()
+    protected virtual void DecreaseSellin()
     {
         SellIn--;
     }

@@ -4,7 +4,7 @@ public class BackstagePasses : ItemDecorator
 {
     public BackstagePasses(Item item) : base(item) { }
 
-    public override void UpdateQuality()
+    protected override void UpdateQuality()
     {
         if(SellIn <= 0)
         {

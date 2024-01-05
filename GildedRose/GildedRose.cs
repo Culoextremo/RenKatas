@@ -10,15 +10,12 @@ public class GildedRose
 
     public GildedRose(IEnumerable<Item> items)
     {
-        this.Items = items.Select(Decorate);
+        Items = items.Select(Decorate);
     }
 
     public void EndDay()
     {
         foreach(var item in Items)
-        {
-            item.UpdateQuality();
-            item.DecreaseSellin();
-        }
+            item.Tick();
     }
 }

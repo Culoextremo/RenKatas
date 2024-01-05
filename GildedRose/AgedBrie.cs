@@ -6,8 +6,8 @@ public class AgedBrie : ItemDecorator
     {
         
     }
-    
-    public override void UpdateQuality()
+
+    protected override void UpdateQuality()
     {
         if (SellIn <= 0)
         {
