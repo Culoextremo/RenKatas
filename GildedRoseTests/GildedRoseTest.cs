@@ -114,6 +114,17 @@ public class GildedRoseTest
         sut.Items.Single().SellIn.Should().Be(9);
         sut.Items.Single().Quality.Should().Be(3);
     }
+    [Test]
+    public void CasiReventa()
+    {
+        var items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 11, Quality = 1 } };
+        var sut = new GildedRose(items);
+        
+        sut.EndDay();
+        
+        sut.Items.Single().SellIn.Should().Be(10);
+        sut.Items.Single().Quality.Should().Be(2);
+    }
     
     [Test]
     public void ReventaQUEDAMUYPOCO()
@@ -127,6 +138,17 @@ public class GildedRoseTest
         sut.Items.Single().Quality.Should().Be(4);
     }
     
+    [Test]
+    public void CasiReventaQUEDAMUYPOCO()
+    {
+        var items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 6, Quality = 1 } };
+        var sut = new GildedRose(items);
+        
+        sut.EndDay();
+        
+        sut.Items.Single().SellIn.Should().Be(5);
+        sut.Items.Single().Quality.Should().Be(3);
+    }
     [Test]
     public void VentaDeEntradas()
     {
