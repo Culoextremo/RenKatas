@@ -14,6 +14,7 @@ public class GildedRose
         {
             return item.Name switch
             {
+                "Conjured Mana Cake" => new ConjuredItem(item),
                 "Aged Brie" => new AgedBrie(item),
                 "Backstage passes to a TAFKAL80ETC concert" => new BackstagePasses(item),
                 _ => new ItemDecorator(item)

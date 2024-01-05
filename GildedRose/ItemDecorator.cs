@@ -32,7 +32,7 @@ public class ItemDecorator
         }
     }
     
-    void TryDecreaseQuality()
+    protected virtual void TryDecreaseQuality()
     {
         if(Quality > 0)
         {
