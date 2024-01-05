@@ -63,10 +63,7 @@ public class ItemDecorator
         }
     }
 
-    protected virtual void DecreaseSellin()
-    {
-        SellIn--;
-    }
+    private void DecreaseSellin() => SellIn--;
 
     protected void TryIncreaseQuality()
     {
