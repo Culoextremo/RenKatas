@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GildedRoseKata;
+﻿namespace GildedRoseKata;
 
 public class AgedBrie : ItemDecorator
 {
@@ -17,24 +15,5 @@ public class AgedBrie : ItemDecorator
         }
 
         TryIncreaseQuality();
-    }
-}
-
-public class ConjuredItem : ItemDecorator
-{
-    public ConjuredItem(Item item) : base(item)
-    {
-        
-    }
-    
-    protected override void TryDecreaseQuality()
-    {
-        if(Quality > 0)
-        {
-            if(Name != "Sulfuras, Hand of Ragnaros")
-            {
-                Quality = Math.Clamp(Quality - 2, 0, int.MaxValue);
-            }
-        }
     }
 }

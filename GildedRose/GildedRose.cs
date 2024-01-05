@@ -14,6 +14,7 @@ public class GildedRose
         {
             return item.Name switch
             {
+                "Sulfuras, Hand of Ragnaros" => new Sulfuras(item),
                 "Conjured Mana Cake" => new ConjuredItem(item),
                 "Aged Brie" => new AgedBrie(item),
                 "Backstage passes to a TAFKAL80ETC concert" => new BackstagePasses(item),

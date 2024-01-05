@@ -36,18 +36,12 @@ public class ItemDecorator
     {
         if(Quality > 0)
         {
-            if(Name != "Sulfuras, Hand of Ragnaros")
-            {
-                Quality--;
-            }
+            Quality--;
         }
     }
 
-    public void DecreaseSellin()
+    public virtual void DecreaseSellin()
     {
-        if(Name == "Sulfuras, Hand of Ragnaros")
-            return;
-
         SellIn--;
     }
     protected void TryIncreaseQuality()
