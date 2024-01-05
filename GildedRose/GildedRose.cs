@@ -56,18 +56,7 @@ public class GildedRose
 
         items[i].SellIn--;
     }
-
-    void TryDecreaseQuality(int i)
-    {
-        if(items[i].Quality > 0)
-        {
-            if(items[i].Name != "Sulfuras, Hand of Ragnaros")
-            {
-                items[i].Quality--;
-            }
-        }
-    }
-
+    
     void TryIncreaseQuality(int i)
     {
         if(items[i].Quality < 50)
