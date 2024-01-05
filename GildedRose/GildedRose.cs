@@ -46,7 +46,6 @@ public class GildedRose
             case "Aged Brie":
                 break;
             case "Backstage passes to a TAFKAL80ETC concert":
-                items[i].Quality = 0;
                 break;
             default:
                 TryDecreaseQuality(i);
@@ -93,6 +92,11 @@ public class GildedRose
 
     void BackStageQuality(int i)
     {
+        if(items[i].SellIn <= 0)
+        {
+            items[i].Quality = 0;
+            return;
+        }
         TryIncreaseQuality(i);
 
         if(items[i].SellIn < 11)
