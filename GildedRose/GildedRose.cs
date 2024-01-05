@@ -44,7 +44,6 @@ public class GildedRose
         {
             //ESTO OCURRE CUANDO ESTA PASAO DE FECHA
             case "Aged Brie":
-                TryIncreaseQuality(i);
                 break;
             case "Backstage passes to a TAFKAL80ETC concert":
                 items[i].Quality = 0;
@@ -57,6 +56,11 @@ public class GildedRose
 
     void ComportamientoQueso(int i)
     {
+        if (items[i].SellIn <= 0)
+        {
+            TryIncreaseQuality(i);
+        }
+
         TryIncreaseQuality(i);
     }
 
