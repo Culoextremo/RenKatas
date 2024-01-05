@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using static GildedRoseKata.ItemDecorator;
 
 namespace GildedRoseKata;
 
@@ -9,17 +10,7 @@ public class GildedRose
 
     public GildedRose(IEnumerable<Item> items)
     {
-        this.Items = items.Select(item=>
-        {
-            return item.Name switch
-            {
-                "Sulfuras, Hand of Ragnaros" => new Sulfuras(item),
-                "Conjured Mana Cake" => new ConjuredItem(item),
-                "Aged Brie" => new AgedBrie(item),
-                "Backstage passes to a TAFKAL80ETC concert" => new BackstagePasses(item),
-                _ => new ItemDecorator(item)
-            };
-        }).ToList();
+        this.Items = items.Select(Decorate);
     }
 
     public void EndDay()
