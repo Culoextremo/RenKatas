@@ -27,6 +27,12 @@ public class Tests
         sut.value.Should().Be("Fizz");
     }
     
+    [Test]
+    public void hgjfghjfgh()
+    {
+        var sut = new Output(6);
+        sut.value.Should().Be("Fizz");
+    }
     
 }
 
@@ -36,7 +42,7 @@ public class Output
 
     public Output(int value)
     {
-        if(value == 3)
+        if(value % 3 == 0)
         {
             this.value = "Fizz";
         }
