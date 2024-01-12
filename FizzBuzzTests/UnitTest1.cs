@@ -9,28 +9,28 @@ public class Tests
     [Test]
     public void dsfghfdsgh()
     {
-        var sut = new Output(1);
+        var sut = new Output();
         sut.FizzBuzz(1).Should().Be("1");
     }
     
     [Test]
     public void shgfdghdfg()
     {
-        var sut = new Output(2);
+        var sut = new Output();
         sut.FizzBuzz(2).Should().Be("2");
     }
     
     [Test]
     public void sdfghdfghd()
     {
-        var sut = new Output(3);
+        var sut = new Output();
         sut.FizzBuzz(3).Should().Be("Fizz");
     }
     
     [Test]
     public void hgjfghjfgh()
     {
-        var sut = new Output(6);
+        var sut = new Output();
         sut.FizzBuzz(6).Should().Be("Fizz");
     }
     
@@ -40,20 +40,6 @@ public class Output
 {
     public string output;
     private int value;
-
-    public Output(int value)
-    {
-        this.value = value;
-    }
-    
-    public string FizzBuzz()
-    {
-        if(value % 3 == 0)
-        {
-            return "Fizz";
-        }
-        return value.ToString();
-    }
     
     public string FizzBuzz(int value)
     {
