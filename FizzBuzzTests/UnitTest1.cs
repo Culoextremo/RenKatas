@@ -7,8 +7,28 @@ public class Tests
     public void Setup() { }
 
     [Test]
-    public void Test1()
+    public void dsfghfdsgh()
     {
-        Assert.Pass();
+        var sut = new Output(1);
+        sut.value.Should().Be("1");
+    }
+    
+    [Test]
+    public void shgfdghdfg()
+    {
+        var sut = new Output(2);
+        sut.value.Should().Be("2");
+    }
+    
+    
+}
+
+public class Output
+{
+    public string value;
+
+    public Output(int value)
+    {
+        this.value = value.ToString();
     }
 }
