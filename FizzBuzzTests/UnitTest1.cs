@@ -31,6 +31,11 @@ public class Tests
         FizzBuzzOf(6).Should().Be("Fizz");
     }
     
+    [Test]
+    public void dfghfdgh()
+    {
+        FizzBuzzOf(10).Should().Be("Buzz");
+    }
 }
 
 public static class FizzBuzz
@@ -41,6 +46,11 @@ public static class FizzBuzz
         {
             return "Fizz";
         }
+        if(value % 5 == 0)
+        {
+            return "Buzz";
+        }
+        
         return value.ToString();
     }
 }
