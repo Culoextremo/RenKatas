@@ -44,17 +44,8 @@ public class Output
     public Output(int value)
     {
         this.value = value;
-        output = FizzBuzz(value);
     }
-
-    public string FizzBuzz(int value)
-    {
-        if(value % 3 == 0)
-        {
-            return "Fizz";
-        }
-        return value.ToString();
-    }
+    
     public string FizzBuzz()
     {
         if(value % 3 == 0)
