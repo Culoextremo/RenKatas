@@ -44,17 +44,16 @@ public class Output
     public Output(int value)
     {
         this.value = value;
-        ToString(value);
+        output = ToString(value);
     }
 
-    void ToString(int value)
+    public string ToString(int value)
     {
         if(value % 3 == 0)
         {
-            this.output = "Fizz";
-            return;
+            return "Fizz";
         }
         
-        this.output = value.ToString();
+        return value.ToString();
     }
 }
