@@ -1,5 +1,6 @@
 using FluentAssertions;
 using FluentAssertions.Execution;
+using static FizzBuzz;
 
 public class Tests
 {
@@ -9,32 +10,32 @@ public class Tests
     [Test]
     public void dsfghfdsgh()
     {
-        FizzBuzz.Of(1).Should().Be("1");
+        FizzBuzzOf(1).Should().Be("1");
     }
     
     [Test]
     public void shgfdghdfg()
     {
-        FizzBuzz.Of(2).Should().Be("2");
+        FizzBuzzOf(2).Should().Be("2");
     }
     
     [Test]
     public void sdfghdfghd()
     {
-        FizzBuzz.Of(3).Should().Be("Fizz");
+        FizzBuzzOf(3).Should().Be("Fizz");
     }
     
     [Test]
     public void hgjfghjfgh()
     {
-        FizzBuzz.Of(6).Should().Be("Fizz");
+        FizzBuzzOf(6).Should().Be("Fizz");
     }
     
 }
 
 public static class FizzBuzz
 {
-    public static string Of(int value)
+    public static string FizzBuzzOf(int value)
     {
         if(value % 3 == 0)
         {
