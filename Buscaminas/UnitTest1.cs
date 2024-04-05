@@ -62,4 +62,16 @@ public class Tests
         sut.SurroundingMinesAt((0, 1))
             .Should().Be(1);
     }
+
+    [Test]
+    public void sdjkjaskdjkasj()
+    {
+        var sut = new Tablero(
+            (0, 0), (0, 1), (0, 2), 
+            (1, 0), (1, 2), 
+            (2, 0), (2, 1), (2, 2));
+
+        sut.SurroundingMinesAt((1, 1))
+            .Should().Be(8);
+    }
 }

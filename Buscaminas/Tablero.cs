@@ -21,6 +21,20 @@ public class Tablero
             surroundingMines++;
         if(HasMine(coords.x+1,coords.y))
             surroundingMines++;
+        if(HasMine(coords.x+1,coords.y+1))
+            surroundingMines++;
+        
+        if(HasMine(coords.x, coords.y-1))
+            surroundingMines++;
+        if(HasMine(coords.x-1,coords.y))
+            surroundingMines++;
+        if(HasMine(coords.x-1,coords.y-1))
+            surroundingMines++;
+        
+        if(HasMine(coords.x+1,coords.y-1))
+            surroundingMines++;
+        if(HasMine(coords.x-1,coords.y+1))
+            surroundingMines++;
         
         return surroundingMines;
     }
