@@ -13,4 +13,9 @@ public class Tablero
     {
         return mines.Contains((x,y));
     }
+
+    public object SurroundingMinesAt((int, int) valueTuple)
+    {
+        throw new NotImplementedException();
+    }
 }
