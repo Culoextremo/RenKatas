@@ -1,0 +1,14 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=5230ee17_002D52b7_002D4c07_002D9a70_002Da35c72311216/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from &amp;lt;GildedRoseTests&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Project Location="C:\Users\G732\RiderProjects\UnoRen\GildedRoseTests" Presentation="&amp;lt;GildedRoseTests&amp;gt;" /&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=87e7008b_002D0ab6_002D493a_002Da9d6_002Ddcfb22d00e3c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Session" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;And&gt;&#xD;
+    &lt;Namespace&gt;GildedRoseTests&lt;/Namespace&gt;&#xD;
+    &lt;Project Location="C:\Users\G732\RiderProjects\UnoRen\GildedRoseTests" Presentation="&amp;lt;GildedRoseTests&amp;gt;" /&gt;&#xD;
+  &lt;/And&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a9e49793_002D48dc_002D4f01_002Db041_002Dd7429135e28b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;GildedRoseTests&amp;gt; #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Project Location="C:\Users\G732\RiderProjects\UnoRen\GildedRoseTests" Presentation="&amp;lt;GildedRoseTests&amp;gt;" /&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
