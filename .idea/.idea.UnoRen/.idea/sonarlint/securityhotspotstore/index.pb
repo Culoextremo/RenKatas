@@ -17,33 +17,11 @@ I
 UnoRen/IntegrationTest.cs,1\1\116f2467ab30ea9fd9e868bcd04ab15d5627d8bf
 C
 UnoRen/ThrowCard.cs,a\6\a6ef9ef32780c0dc8037ede845930655ea928bb7
-R
-"GuildedRoseTests/GildedRoseTest.cs,7\1\719c0ed0b7fd4eb0565b9983a933188abfbe7ef0
 ?
 UnoRen/Color.cs,2\5\25b83d1b4d3579c75adea9ab7599b81118742051
-M
-GuildedRose/GildedRose.csproj,b\7\b7bfb712bebcd19c72011d06f66f193a5675161f
-I
-GuildedRose/GildedRose.cs,8\f\8fe28c9a1384c7c5f91b6504b17e4659da06b7e4
-W
-'GuildedRoseTests/GildedRoseTests.csproj,7\d\7d30b50f5737e8c6b4071ee8894c7b6d6bcb70d8
 :
 
 UnoRen.sln,a\e\ae5d7e6f24948cb669d95a97b454f09c506d4dcf
-S
-#GuildedRoseTests/TextTestFixture.cs,c\a\caaba978a79788ebe76e7ff2edd91e56bb2b5a97
-C
-GuildedRose/Item.cs,b\3\b35dc80034e7ce2a3b7b4e6def2e199682f28af3
-N
-GuildedRose/TextTestFixture.cs,3\1\3154d94744c048a46b710660450b824b2927bd28
-J
-GuildedRoseConsole/Item.cs,4\7\472aa3afca9bdbbad59b478d77054189e16d5313
-P
- GuildedRoseConsole/GildedRose.cs,3\f\3f8d0eda624b36a9c3304f4a65579085e4db74b2
-U
-%GuildedRoseConsole/TextTestFixture.cs,7\1\714af535c85d4438b52417fee031763e62700ce3
-\
-,GuildedRoseConsole/GuildedRoseConsole.csproj,4\f\4f98099fb1be9738ce1229807faed5082d706ca4
 V
 &GildedRoseTests/GildedRoseTests.csproj,8\9\895d9a255b012c6568bab786c80f9a3519826864
 Q
@@ -60,3 +38,5 @@ H
 GildedRose/GildedRose.cs,1\c\1ce390ed989b5b3354e0fd4d4263e171e85e7a32
 B
 GildedRose/Item.cs,b\4\b4e4e6c9cec2e498c66333977f2a84450bd02346
+@
+UnoRen/Usings.cs,9\2\927b82ecb3ca6c68f18b41546e52f99b5ddd4ff9
