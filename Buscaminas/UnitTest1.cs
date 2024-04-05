@@ -46,4 +46,12 @@ public class Tests
         sut.SurroundingMinesAt((0, 0))
             .Should().Be(2);
     }
+    
+    [Test]
+    public void lakslkdlskl()
+    {
+        var sut = new Tablero((0, 1), (1, 0), (4, 3));
+        sut.SurroundingMinesAt((0, 0))
+            .Should().Be(2);
+    }
 }

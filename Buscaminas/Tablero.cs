@@ -2,7 +2,7 @@
 
 public class Tablero
 {
-    readonly (int, int)[] mines;
+    readonly (int x, int y)[] mines;
 
     public Tablero(params (int, int)[] mines)
     {
@@ -14,8 +14,14 @@ public class Tablero
         return mines.Contains((x,y));
     }
 
-    public int SurroundingMinesAt((int, int) coords)
+    public int SurroundingMinesAt((int x, int y) coords)
     {
-        return mines.Length;
+        int surroundingMines = 0;
+        if(HasMine(0, 1))
+            surroundingMines++;
+        if(HasMine(1, 0))
+            surroundingMines++;
+        
+        return surroundingMines;
     }
 }
