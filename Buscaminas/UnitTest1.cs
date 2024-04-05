@@ -54,4 +54,12 @@ public class Tests
         sut.SurroundingMinesAt((0, 0))
             .Should().Be(2);
     }
+    
+    [Test]
+    public void dfgshfdghf()
+    {
+        var sut = new Tablero((0, 2));
+        sut.SurroundingMinesAt((0, 1))
+            .Should().Be(1);
+    }
 }

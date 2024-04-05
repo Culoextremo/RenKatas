@@ -17,9 +17,9 @@ public class Tablero
     public int SurroundingMinesAt((int x, int y) coords)
     {
         int surroundingMines = 0;
-        if(HasMine(0, 1))
+        if(HasMine(coords.x, coords.y+1))
             surroundingMines++;
-        if(HasMine(1, 0))
+        if(HasMine(coords.x+1,coords.y))
             surroundingMines++;
         
         return surroundingMines;
