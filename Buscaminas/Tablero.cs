@@ -14,28 +14,21 @@ public class Tablero
         return mines.Contains((x,y));
     }
 
-    public int SurroundingMinesAt((int x, int y) coords)
+    public int SurroundingMinesAt((int x, int y) position)
     {
         int surroundingMines = 0;
-        if(HasMine(coords.x, coords.y+1))
-            surroundingMines++;
-        if(HasMine(coords.x+1,coords.y))
-            surroundingMines++;
-        if(HasMine(coords.x+1,coords.y+1))
-            surroundingMines++;
-        
-        if(HasMine(coords.x, coords.y-1))
-            surroundingMines++;
-        if(HasMine(coords.x-1,coords.y))
-            surroundingMines++;
-        if(HasMine(coords.x-1,coords.y-1))
-            surroundingMines++;
-        
-        if(HasMine(coords.x+1,coords.y-1))
-            surroundingMines++;
-        if(HasMine(coords.x-1,coords.y+1))
-            surroundingMines++;
-        
+
+        for(int x = position.x - 1; x <= position.x + 1; x++)
+        {
+            for(int y = position.y - 1; y <= position.y + 1; y++)
+            {
+                if(position == (x,y) || !HasMine(x, y))
+                    continue;
+                
+                surroundingMines++;
+            }
+        }
+
         return surroundingMines;
     }
 }

@@ -74,4 +74,13 @@ public class Tests
         sut.SurroundingMinesAt((1, 1))
             .Should().Be(8);
     }
+    
+    [Test]
+    public void asdasdasdasd()
+    {
+        var sut = new Tablero((0, 0));
+
+        sut.SurroundingMinesAt((0, 0))
+            .Should().Be(0);
+    }
 }
