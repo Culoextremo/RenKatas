@@ -8,21 +8,34 @@ public class Tests
     public void Setup() { }
 
     [Test]
-    public void Test1()
+    public void skdjskjdk()
     {
         Tablero sut = new Tablero((0,0));
-        sut.HasMine(0, 0).Should().Be(true);
+        sut.HasMine(0, 0)
+            .Should().Be(true);
+    }
+
+    [Test]
+    public void METHOD()
+    {
+        var sut = new Tablero((0, 0));
+
+        sut.HasMine(0, 1)
+            .Should().BeFalse();
     }
 }
 
 public class Tablero
 {
-    public Tablero((int, int) valueTuple)
+    readonly (int, int) mine;
+
+    public Tablero((int, int) mine)
     {
+        this.mine = mine;
     }
 
-    public bool HasMine(int i, int i1)
+    public bool HasMine(int x, int y)
     {
-        return true;
+        return mine == (x, y);
     }
 }
