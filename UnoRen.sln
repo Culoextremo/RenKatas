@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuildedRoseConsole", "Gilde
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GildedRoseTests", "GildedRoseTests\GildedRoseTests.csproj", "{599AAF27-6E6A-45B3-AAE2-46AE706B0EBC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buscaminas", "Buscaminas\Buscaminas.csproj", "{60EDD247-9945-433A-ADA3-9835849D3329}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{599AAF27-6E6A-45B3-AAE2-46AE706B0EBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{599AAF27-6E6A-45B3-AAE2-46AE706B0EBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{599AAF27-6E6A-45B3-AAE2-46AE706B0EBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60EDD247-9945-433A-ADA3-9835849D3329}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60EDD247-9945-433A-ADA3-9835849D3329}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60EDD247-9945-433A-ADA3-9835849D3329}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60EDD247-9945-433A-ADA3-9835849D3329}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
