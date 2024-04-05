@@ -23,19 +23,25 @@ public class Tests
         sut.HasMine(0, 1)
             .Should().BeFalse();
     }
+
+    [Test]
+    public void ksjdksjkd()
+    {
+        var sut = new Tablero((0, 0), (0, 1));
+    }
 }
 
 public class Tablero
 {
-    readonly (int, int) mine;
+    readonly (int, int)[] mines;
 
-    public Tablero((int, int) mine)
+    public Tablero(params (int, int)[] mines)
     {
-        this.mine = mine;
+        this.mines = mines;
     }
 
     public bool HasMine(int x, int y)
     {
-        return mine == (x, y);
+        return mines.Contains((x,y));
     }
 }
