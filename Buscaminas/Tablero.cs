@@ -74,12 +74,13 @@ public class Tablero
             IsGameOver = true;
         }
         
+        if (SurroundingMinesAt(position)> 0) return;
         
         for(int x = position.x - 1; x <= position.x + 1; x++)
         {
             for(int y = position.y - 1; y <= position.y + 1; y++)
             {
-                if(position == (x,y) || !InsideBounds(x,y) || IsRevealed(x,y) || HasMine(x,y))
+                if(position == (x,y) || !InsideBounds(x,y) || IsRevealed(x,y))
                     continue;
                 
                 RevealCell((x,y));

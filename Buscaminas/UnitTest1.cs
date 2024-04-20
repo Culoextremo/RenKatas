@@ -173,6 +173,16 @@ public class Tests
             .Should().BeTrue();
     }
     
+    [Test]
+    public void fghjgf()
+    {
+        var sut = new Tablero(sizeX: 3, sizeY: 3, (0,0));
+        sut.RevealCell((0,1));
+        sut.IsRevealed(2, 2).Should().BeFalse();
+    }
+    
+    
+    
     //Ganar cuando solo quedan las minas
     //Lo que no hay nada, revela lo que no hay nada al rededor.
     //Precondiciones tamaño
