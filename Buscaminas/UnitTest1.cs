@@ -110,7 +110,6 @@ public class Tests
 
     //Click y perder
     //Ganar cuando solo quedan las minas
-    //Quitar bandera
     //Lo que no hay nada, revela lo que no hay nada al rededor.
     //El tablero tiene un tamaño
 }
