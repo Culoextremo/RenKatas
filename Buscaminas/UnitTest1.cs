@@ -163,7 +163,7 @@ public class Tests
     }
 
     [Test]
-    public void ajsdkjskdskj()
+    public void RevealSurroundingCells()
     {
         var sut = new Tablero(sizeX: 3, sizeY: 3);
         
@@ -174,7 +174,7 @@ public class Tests
     }
     
     [Test]
-    public void fghjgf()
+    public void DoNotRevealAdjacentCells_WhenSelfHasSurroundingMines()
     {
         var sut = new Tablero(sizeX: 3, sizeY: 3, (0,0));
         sut.RevealCell((0,1));
@@ -182,7 +182,7 @@ public class Tests
     }
     
     [Test]
-    public void fghjgf2()
+    public void WinGame()
     {
         var sut = new Tablero(sizeX: 1, sizeY: 1);
         sut.RevealCell((0, 0));
@@ -190,14 +190,14 @@ public class Tests
     }
     
     [Test]
-    public void sdasdasdasa()
+    public void NotWonByDefault()
     {
         var sut = new Tablero(sizeX: 1, sizeY: 1);
         sut.Won.Should().BeFalse();
     }
     
     [Test]
-    public void asdasdasd()
+    public void WinGameWithMines()
     {
         var sut = new Tablero(sizeX: 3, sizeY: 3, 
             (0, 0), (0, 1), (0, 2), 
@@ -212,7 +212,7 @@ public class Tests
     
     // O X O
     [Test]
-    public void sdasdasd()
+    public void WinGameWithSeveralReveals()
     {
         var sut = new Tablero(sizeX: 3, sizeY: 1, (1, 0));
 
