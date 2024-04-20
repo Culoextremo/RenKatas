@@ -83,4 +83,23 @@ public class Tests
         sut.SurroundingMinesAt((0, 0))
             .Should().Be(0);
     }
+
+    [Test]
+    public void Flag()
+    {
+        var sut = new Tablero();
+
+        sut.PlantFlag(0, 0);
+        sut.HasFlag(0, 0)
+            .Should().BeTrue();
+        sut.HasFlag(0, 1)
+            .Should().BeFalse();
+    }
+    
+    //Poner bandera
+    //Click y perder
+    //Ganar cuando solo quedan las minas
+    //Quitar bandera
+    //Lo que no hay nada, revela lo que no hay nada al rededor.
+    //El tablero tiene un tamaño
 }

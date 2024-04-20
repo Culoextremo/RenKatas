@@ -3,6 +3,7 @@
 public class Tablero
 {
     readonly (int x, int y)[] mines;
+    readonly List<(int x, int y)> flags = new();
 
     public Tablero(params (int, int)[] mines)
     {
@@ -30,5 +31,15 @@ public class Tablero
         }
 
         return surroundingMines;
+    }
+
+    public void PlantFlag(int x, int y)
+    {
+        flags.Add((x, y));
+    }
+
+    public bool HasFlag(int x, int y)
+    {
+        return flags.Contains((x, y));
     }
 }
