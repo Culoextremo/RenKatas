@@ -96,7 +96,18 @@ public class Tests
             .Should().BeFalse();
     }
     
-    //Poner bandera
+    [Test]
+    public void dfgsdfghsdfg()
+    {
+        var sut = new Tablero();
+        sut.PlantFlag(0, 0);
+        
+        sut.RemoveFlag(0, 0);
+        
+        sut.HasFlag(0, 0).Should().Be(false);
+    }
+    
+
     //Click y perder
     //Ganar cuando solo quedan las minas
     //Quitar bandera

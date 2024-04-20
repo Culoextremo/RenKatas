@@ -35,11 +35,22 @@ public class Tablero
 
     public void PlantFlag(int x, int y)
     {
+        if(HasFlag(x, y))
+            throw new InvalidOperationException("FLAGGED ALREADY");
+        
         flags.Add((x, y));
     }
 
     public bool HasFlag(int x, int y)
     {
         return flags.Contains((x, y));
+    }
+
+    public void RemoveFlag(int x, int y)
+    {
+        if(!HasFlag(x, y))
+            throw new InvalidOperationException("NO FLAG");
+        
+        flags.Remove((x, y));
     }
 }
