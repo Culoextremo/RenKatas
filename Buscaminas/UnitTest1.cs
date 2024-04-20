@@ -8,7 +8,7 @@ public class Tests
     public void Setup() { }
 
     [Test]
-    public void skdjskjdk()
+    public void HasMineAtPosition()
     {
         Tablero sut = new Tablero((0,0));
         sut.HasMine(0, 0)
@@ -16,7 +16,7 @@ public class Tests
     }
 
     [Test]
-    public void METHOD()
+    public void DoesNotHaveMineAtPosition()
     {
         var sut = new Tablero((0, 0));
 
@@ -25,7 +25,7 @@ public class Tests
     }
 
     [Test]
-    public void ksjdksjkd()
+    public void HasSeveralMines()
     {
         var sut = new Tablero((0, 0), (0, 1));
 
@@ -34,13 +34,13 @@ public class Tests
     }
      
     [Test]
-    public void ghjklghj()
+    public void OneSurroundingMine()
     {
         var sut = new Tablero((0, 1));
         sut.SurroundingMinesAt((0, 0)).Should().Be(1);
     }
     [Test]
-    public void asdasdasd()
+    public void TwoSurroundingMines()
     {
         var sut = new Tablero((0, 1), (1, 0));
         sut.SurroundingMinesAt((0, 0))
@@ -48,7 +48,7 @@ public class Tests
     }
     
     [Test]
-    public void lakslkdlskl()
+    public void TwoSurroundingMines_andOneNotSurrounding()
     {
         var sut = new Tablero((0, 1), (1, 0), (4, 3));
         sut.SurroundingMinesAt((0, 0))
@@ -56,7 +56,7 @@ public class Tests
     }
     
     [Test]
-    public void dfgshfdghf()
+    public void SurroundingMineNotAtOrigin()
     {
         var sut = new Tablero((0, 2));
         sut.SurroundingMinesAt((0, 1))
@@ -64,7 +64,7 @@ public class Tests
     }
 
     [Test]
-    public void sdjkjaskdjkasj()
+    public void EightSurroundingMines()
     {
         var sut = new Tablero(
             (0, 0), (0, 1), (0, 2), 
@@ -76,7 +76,7 @@ public class Tests
     }
     
     [Test]
-    public void asdasdasdasd()
+    public void SelfIsNotSurrounding()
     {
         var sut = new Tablero((0, 0));
 
