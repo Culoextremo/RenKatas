@@ -4,6 +4,7 @@ public class Tablero
 {
     readonly (int x, int y)[] mines;
     readonly List<(int x, int y)> flags = new();
+    readonly List<(int x, int y)> revealedCells = new();
 
     public Tablero(params (int, int)[] mines)
     {
@@ -58,9 +59,16 @@ public class Tablero
 
     public void Click(int x, int y)
     {
+        revealedCells.Add((x,y));
+        
         if(mines.Contains((x, y)))
         {
             IsGameOver = true;
         }
+    }
+
+    public bool IsRevealed(int x, int y)
+    {
+        return revealedCells.Contains((x, y));
     }
 }
