@@ -24,18 +24,24 @@ public class Tablero
 
     public bool HasMine(int x, int y)
     {
+        if(!InsideBounds(x, y))
+            throw new ArgumentException();
+            
         return mines.Contains((x,y));
     }
 
     public int SurroundingMinesAt((int x, int y) position)
     {
+        if(!InsideBounds(position.x, position.y))
+            throw new ArgumentException();
+        
         int surroundingMines = 0;
 
         for(int x = position.x - 1; x <= position.x + 1; x++)
         {
             for(int y = position.y - 1; y <= position.y + 1; y++)
             {
-                if(position == (x,y) || !HasMine(x, y))
+                if(!InsideBounds(x,y) || position == (x,y) || !HasMine(x, y))
                     continue;
                 
                 surroundingMines++;
@@ -47,6 +53,9 @@ public class Tablero
 
     public void PlantFlag(int x, int y)
     {
+        if(!InsideBounds(x, y))
+            throw new ArgumentException();
+        
         if(HasFlag(x, y))
             throw new InvalidOperationException("FLAGGED ALREADY");
         
@@ -55,11 +64,17 @@ public class Tablero
 
     public bool HasFlag(int x, int y)
     {
+        if(!InsideBounds(x, y))
+            throw new ArgumentException();
+        
         return flags.Contains((x, y));
     }
 
     public void RemoveFlag(int x, int y)
     {
+        if(!InsideBounds(x, y))
+            throw new ArgumentException();
+        
         if(!HasFlag(x, y))
             throw new InvalidOperationException("NO FLAG");
         
@@ -68,6 +83,9 @@ public class Tablero
 
     public void RevealCell((int x, int y) position)
     {
+        if(!InsideBounds(position.x, position.y))
+            throw new ArgumentException();
+            
         revealedCells.Add((position.x,position.y));
         
         if(mines.Contains((position.x, position.y)))
@@ -91,6 +109,9 @@ public class Tablero
 
     public bool IsRevealed(int x, int y)
     {
+        if(!InsideBounds(x, y))
+            throw new ArgumentException();
+        
         return revealedCells.Contains((x, y));
     }
 

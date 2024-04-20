@@ -222,5 +222,5 @@ public class Tests
         sut.RevealCell((2, 0));
         sut.Won.Should().BeTrue();
     }
-    //Precondiciones tamaño
+    
 }
