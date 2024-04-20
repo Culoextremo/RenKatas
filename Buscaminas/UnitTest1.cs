@@ -106,8 +106,33 @@ public class Tests
         
         sut.HasFlag(0, 0).Should().Be(false);
     }
-    
 
+    [Test]
+    public void askjdksakdj()
+    {
+        var sut = new Tablero((0, 0));
+
+        sut.Click(0, 0);
+        
+        sut.IsGameOver.Should().BeTrue();
+    }
+
+    [Test]
+    public void kajskdjaskdj()
+    {
+        new Tablero((0, 0))
+            .IsGameOver.Should().BeFalse();
+    }
+
+    [Test]
+    public void akdjksjkds()
+    {
+        var sut = new Tablero((0, 0));
+
+        sut.Click(0, 1);
+        
+        sut.IsGameOver.Should().BeFalse();
+    }
     //Click y perder
     //Ganar cuando solo quedan las minas
     //Lo que no hay nada, revela lo que no hay nada al rededor.

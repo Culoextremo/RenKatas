@@ -10,6 +10,8 @@ public class Tablero
         this.mines = mines;
     }
 
+    public bool IsGameOver { get; private set; } = false;
+
     public bool HasMine(int x, int y)
     {
         return mines.Contains((x,y));
@@ -52,5 +54,13 @@ public class Tablero
             throw new InvalidOperationException("NO FLAG");
         
         flags.Remove((x, y));
+    }
+
+    public void Click(int x, int y)
+    {
+        if(mines.Contains((x, y)))
+        {
+            IsGameOver = true;
+        }
     }
 }
