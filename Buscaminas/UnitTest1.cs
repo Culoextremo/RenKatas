@@ -133,6 +133,7 @@ public class Tests
         
         sut.IsGameOver.Should().BeFalse();
     }
+    //Revelar espacios normales
     //Ganar cuando solo quedan las minas
     //Lo que no hay nada, revela lo que no hay nada al rededor.
     //El tablero tiene un tamaño
