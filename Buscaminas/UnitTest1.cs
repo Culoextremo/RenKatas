@@ -112,7 +112,7 @@ public class Tests
     {
         var sut = new Tablero((0, 0));
 
-        sut.RevealCell(0, 0);
+        sut.RevealCell((0, 0));
         
         sut.IsGameOver.Should().BeTrue();
     }
@@ -129,7 +129,7 @@ public class Tests
     {
         var sut = new Tablero((0, 0));
 
-        sut.RevealCell(0, 1);
+        sut.RevealCell((0, 1));
         
         sut.IsGameOver.Should().BeFalse();
     }
@@ -138,7 +138,7 @@ public class Tests
     public void RevealCell()
     {
         var sut = new Tablero((0, 0));
-        sut.RevealCell(0,1);
+        sut.RevealCell((0,1));
 
         sut.IsRevealed(0, 1).Should().BeTrue();
     }
@@ -160,6 +160,17 @@ public class Tests
         sut.InsideBounds(0, 0).Should().Be(true);
         sut.InsideBounds(-1, 0).Should().Be(false);
         sut.InsideBounds(0, -1).Should().Be(false);
+    }
+
+    [Test]
+    public void ajsdkjskdskj()
+    {
+        var sut = new Tablero(sizeX: 3, sizeY: 3);
+        
+        sut.RevealCell((0, 0));
+
+        sut.IsRevealed(2, 2)
+            .Should().BeTrue();
     }
     
     //Ganar cuando solo quedan las minas

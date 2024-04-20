@@ -9,7 +9,7 @@ public class Tablero
     readonly List<(int x, int y)> revealedCells = new();
     
 
-    public Tablero(params (int, int)[] mines) : this(int.MaxValue, int.MaxValue, mines)
+    public Tablero(params (int, int)[] mines) : this(5, 5, mines)
     {
     }
 
@@ -65,13 +65,25 @@ public class Tablero
         flags.Remove((x, y));
     }
 
-    public void RevealCell(int x, int y)
+    public void RevealCell((int x, int y) position)
     {
-        revealedCells.Add((x,y));
+        revealedCells.Add((position.x,position.y));
         
-        if(mines.Contains((x, y)))
+        if(mines.Contains((position.x, position.y)))
         {
             IsGameOver = true;
+        }
+        
+        
+        for(int x = position.x - 1; x <= position.x + 1; x++)
+        {
+            for(int y = position.y - 1; y <= position.y + 1; y++)
+            {
+                if(position == (x,y) || !InsideBounds(x,y) || IsRevealed(x,y) || HasMine(x,y))
+                    continue;
+                
+                RevealCell((x,y));
+            }
         }
     }
 
