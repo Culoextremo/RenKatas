@@ -65,7 +65,7 @@ public class Tablero
         flags.Remove((x, y));
     }
 
-    public void Click(int x, int y)
+    public void RevealCell(int x, int y)
     {
         revealedCells.Add((x,y));
         

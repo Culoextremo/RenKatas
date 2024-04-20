@@ -112,7 +112,7 @@ public class Tests
     {
         var sut = new Tablero((0, 0));
 
-        sut.Click(0, 0);
+        sut.RevealCell(0, 0);
         
         sut.IsGameOver.Should().BeTrue();
     }
@@ -129,22 +129,22 @@ public class Tests
     {
         var sut = new Tablero((0, 0));
 
-        sut.Click(0, 1);
+        sut.RevealCell(0, 1);
         
         sut.IsGameOver.Should().BeFalse();
     }
 
     [Test]
-    public void fgdsfgffsd()
+    public void RevealCell()
     {
         var sut = new Tablero((0, 0));
-        sut.Click(0,1);
+        sut.RevealCell(0,1);
 
         sut.IsRevealed(0, 1).Should().BeTrue();
     }
     
     [Test]
-    public void sdfhfgg()
+    public void CellIsNotRevealed()
     {
         var sut = new Tablero((0, 0));
 
@@ -152,7 +152,7 @@ public class Tests
     }
     
     [Test]
-    public void sdfgsdfgd()
+    public void IsOutOfBounds()
     {
         var sut = new Tablero(sizeX:3, sizeY: 3);
 
@@ -164,5 +164,5 @@ public class Tests
     
     //Ganar cuando solo quedan las minas
     //Lo que no hay nada, revela lo que no hay nada al rededor.
-    //El tablero tiene un tamaño
+    //Precondiciones tamaño
 }
