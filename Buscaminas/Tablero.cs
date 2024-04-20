@@ -20,6 +20,7 @@ public class Tablero
     }
 
     public bool IsGameOver { get; private set; } = false;
+    public bool Won => !IsGameOver && revealedCells.Count == size.x * size.y - mines.Length;
 
     public bool HasMine(int x, int y)
     {

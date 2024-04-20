@@ -181,9 +181,46 @@ public class Tests
         sut.IsRevealed(2, 2).Should().BeFalse();
     }
     
+    [Test]
+    public void fghjgf2()
+    {
+        var sut = new Tablero(sizeX: 1, sizeY: 1);
+        sut.RevealCell((0, 0));
+        sut.Won.Should().BeTrue();
+    }
+    
+    [Test]
+    public void sdasdasdasa()
+    {
+        var sut = new Tablero(sizeX: 1, sizeY: 1);
+        sut.Won.Should().BeFalse();
+    }
+    
+    [Test]
+    public void asdasdasd()
+    {
+        var sut = new Tablero(sizeX: 3, sizeY: 3, 
+            (0, 0), (0, 1), (0, 2), 
+            (1, 0), (1, 2), 
+            (2, 0), (2, 1), (2, 2));
+
+        sut.RevealCell((1, 1));
+
+        sut.Won.Should().BeTrue();
+    }
     
     
-    //Ganar cuando solo quedan las minas
-    //Lo que no hay nada, revela lo que no hay nada al rededor.
+    // O X O
+    [Test]
+    public void sdasdasd()
+    {
+        var sut = new Tablero(sizeX: 3, sizeY: 1, (1, 0));
+
+        sut.RevealCell((0, 0));
+        sut.Won.Should().BeFalse();
+        
+        sut.RevealCell((2, 0));
+        sut.Won.Should().BeTrue();
+    }
     //Precondiciones tamaño
 }
