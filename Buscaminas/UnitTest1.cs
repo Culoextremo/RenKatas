@@ -97,7 +97,7 @@ public class Tests
     }
     
     [Test]
-    public void dfgsdfghsdfg()
+    public void RemoveFlag()
     {
         var sut = new Tablero();
         sut.PlantFlag(0, 0);
@@ -108,7 +108,7 @@ public class Tests
     }
 
     [Test]
-    public void askjdksakdj()
+    public void MinesKillsYou()
     {
         var sut = new Tablero((0, 0));
 
@@ -118,14 +118,14 @@ public class Tests
     }
 
     [Test]
-    public void kajskdjaskdj()
+    public void NotGameOverByDefault()
     {
         new Tablero((0, 0))
             .IsGameOver.Should().BeFalse();
     }
 
     [Test]
-    public void akdjksjkds()
+    public void EmptySpacesDoNotKillYou()
     {
         var sut = new Tablero((0, 0));
 
@@ -133,7 +133,6 @@ public class Tests
         
         sut.IsGameOver.Should().BeFalse();
     }
-    //Click y perder
     //Ganar cuando solo quedan las minas
     //Lo que no hay nada, revela lo que no hay nada al rededor.
     //El tablero tiene un tamaño
