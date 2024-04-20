@@ -151,6 +151,17 @@ public class Tests
         sut.IsRevealed(0, 1).Should().BeFalse();
     }
     
+    [Test]
+    public void sdfgsdfgd()
+    {
+        var sut = new Tablero(sizeX:3, sizeY: 3);
+
+        sut.InsideBounds(3, 3).Should().Be(false);
+        sut.InsideBounds(0, 0).Should().Be(true);
+        sut.InsideBounds(-1, 0).Should().Be(false);
+        sut.InsideBounds(0, -1).Should().Be(false);
+    }
+    
     //Ganar cuando solo quedan las minas
     //Lo que no hay nada, revela lo que no hay nada al rededor.
     //El tablero tiene un tamaño

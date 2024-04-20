@@ -2,12 +2,20 @@
 
 public class Tablero
 {
+    readonly (int x, int y) size;
+    
     readonly (int x, int y)[] mines;
     readonly List<(int x, int y)> flags = new();
     readonly List<(int x, int y)> revealedCells = new();
+    
 
-    public Tablero(params (int, int)[] mines)
+    public Tablero(params (int, int)[] mines) : this(int.MaxValue, int.MaxValue, mines)
     {
+    }
+
+    public Tablero(int sizeX, int sizeY, params (int, int)[] mines)
+    {
+        size = ((sizeX, sizeY));
         this.mines = mines;
     }
 
@@ -70,5 +78,10 @@ public class Tablero
     public bool IsRevealed(int x, int y)
     {
         return revealedCells.Contains((x, y));
+    }
+
+    public bool InsideBounds(int x, int y)
+    {
+        return size.x > x && size.y > y && x>=0 && y>=0;
     }
 }
